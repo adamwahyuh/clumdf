@@ -1,5 +1,4 @@
 import { useTranslation } from "react-i18next";
-import { toast } from "sonner";
 import { FileStack, Plus } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ToolHeader } from "@/components/layout/ToolHeader";
@@ -9,9 +8,8 @@ import { ResultCard } from "@/components/common/ResultCard";
 import { DropOverlay } from "@/components/files/DropOverlay";
 import { DropZone } from "@/components/files/DropZone";
 import { SortableFileGrid } from "@/components/files/SortableFileGrid";
-import { useFileDrop } from "@/hooks/use-file-drop";
+import { useFileInput } from "@/hooks/use-file-input";
 import { formatBytes } from "@/lib/format";
-import { pickFiles } from "@/lib/tauri/dialogs";
 import { PDF_EXTENSIONS } from "@/types/files";
 import { useMerge, useMergeQueue } from "./use-merge";
 
@@ -25,14 +23,7 @@ export function MergeView() {
     add(paths);
   }
 
-  const dragging = useFileDrop(PDF_EXTENSIONS, (paths, rejected) => {
-    if (rejected) toast.warning(t("files.unsupported", { count: rejected }));
-    if (paths.length) addFiles(paths);
-  });
-
-  async function browse() {
-    addFiles(await pickFiles("PDF", [...PDF_EXTENSIONS]));
-  }
+  const { dragging, browse } = useFileInput(PDF_EXTENSIONS, "PDF", addFiles);
 
   const totalPages = files.reduce((sum, f) => sum + (f.pageCount ?? 0), 0);
   const summary =

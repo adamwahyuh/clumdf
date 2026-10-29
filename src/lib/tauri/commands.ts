@@ -41,3 +41,29 @@ export function compressPdf(args: {
 }): Promise<CompressReport> {
   return invoke("compress_pdf", args);
 }
+
+export type PageSize = "fit" | "a4" | "f4" | "letter" | "legal";
+export type PageOrientation = "auto" | "portrait" | "landscape";
+export type Margin = "none" | "small" | "medium" | "large";
+export type ImageQuality = "original" | "high" | "medium" | "low";
+
+export interface ImageToPdfOptions {
+  pageSize: PageSize;
+  orientation: PageOrientation;
+  margin: Margin;
+  quality: ImageQuality;
+}
+
+export interface ImageToPdfReport {
+  pageCount: number;
+  outputSize: number;
+}
+
+export function imagesToPdf(args: {
+  inputs: string[];
+  output: string;
+  options: ImageToPdfOptions;
+  jobId: string;
+}): Promise<ImageToPdfReport> {
+  return invoke("images_to_pdf", args);
+}

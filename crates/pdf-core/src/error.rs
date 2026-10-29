@@ -9,6 +9,9 @@ pub enum PdfError {
     #[error("PDF rusak atau tidak bisa dibaca ({reason}): {path}")]
     Invalid { path: PathBuf, reason: String },
 
+    #[error("gambar rusak atau formatnya tidak didukung ({reason}): {path}")]
+    InvalidImage { path: PathBuf, reason: String },
+
     #[error("gagal membaca/menulis file ({source}): {path}")]
     Io {
         path: PathBuf,
@@ -25,6 +28,7 @@ impl PdfError {
         match self {
             PdfError::Encrypted { .. } => "encrypted",
             PdfError::Invalid { .. } => "invalid",
+            PdfError::InvalidImage { .. } => "invalid_image",
             PdfError::Io { .. } => "io",
             PdfError::NoInput => "no_input",
         }
@@ -32,15 +36,20 @@ impl PdfError {
 
     pub fn path(&self) -> Option<&Path> {
         match self {
-            PdfError::Encrypted { path } | PdfError::Invalid { path, .. } | PdfError::Io { path, .. } => {
-                Some(path)
-            }
+            PdfError::Encrypted { path }
+            | PdfError::Invalid { path, .. }
+            | PdfError::InvalidImage { path, .. }
+            | PdfError::Io { path, .. } => Some(path),
             PdfError::NoInput => None,
         }
     }
 
     pub(crate) fn io(path: &Path, source: std::io::Error) -> Self {
         PdfError::Io { path: path.to_path_buf(), source }
+    }
+
+    pub(crate) fn invalid_image(path: &Path, reason: impl ToString) -> Self {
+        PdfError::InvalidImage { path: path.to_path_buf(), reason: reason.to_string() }
     }
 
     pub(crate) fn invalid(path: &Path, reason: impl ToString) -> Self {

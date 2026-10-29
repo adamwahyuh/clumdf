@@ -52,7 +52,51 @@
       "title": "Images to PDF",
       "description": "Turn photos or scans into a single PDF.",
       "action": "Create PDF",
-      "formats": "JPG, PNG, WebP, BMP, TIFF, GIF"
+      "formats": "JPG, PNG, WebP, BMP, TIFF, GIF",
+      "defaultName": "Images",
+      "filterName": "Images",
+      "summary_one": "{{count}} image",
+      "summary_other": "{{count}} images",
+      "running": "Creating PDF…",
+      "done": "PDF created",
+      "doneDetails_one": "{{count}} page · {{size}}",
+      "doneDetails_other": "{{count}} pages · {{size}}",
+      "pageSizeLabel": "Page size",
+      "pageSize": {
+        "fit": "Fit to image",
+        "a4": "A4",
+        "f4": "F4 / Folio (215 × 330 mm)",
+        "letter": "Letter",
+        "legal": "Legal"
+      },
+      "orientationLabel": "Orientation",
+      "orientation": {
+        "auto": "Auto",
+        "portrait": "Portrait",
+        "landscape": "Landscape"
+      },
+      "orientationFitHint": "With fit to image, each page follows its image's shape.",
+      "more": "More",
+      "marginLabel": "Margin",
+      "margin": {
+        "none": "None",
+        "small": "Small",
+        "medium": "Medium",
+        "large": "Large"
+      },
+      "qualityLabel": "Image quality",
+      "quality": {
+        "original": "Original",
+        "high": "High",
+        "medium": "Medium",
+        "low": "Small"
+      },
+      "qualityHint": {
+        "original": "Images untouched, file may be large.",
+        "high": "Sharp, good for printing.",
+        "medium": "Right for most uses.",
+        "low": "Smallest file, good for uploads."
+      }
     }
   },
   "dropZone": {
@@ -88,6 +132,7 @@
     "invalid": "{{name}} is damaged or not a PDF",
     "io": "{{name}} couldn't be read or saved",
     "no_input": "No files to process",
-    "unknown": "Something went wrong. Please try again."
+    "unknown": "Something went wrong. Please try again.",
+    "invalid_image": "{{name}} is damaged or its format isn't supported"
   }
 }

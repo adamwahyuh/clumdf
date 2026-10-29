@@ -51,7 +51,49 @@
       "title": "Gambar ke PDF",
       "description": "Ubah foto atau hasil scan menjadi satu PDF.",
       "action": "Buat PDF",
-      "formats": "JPG, PNG, WebP, BMP, TIFF, GIF"
+      "formats": "JPG, PNG, WebP, BMP, TIFF, GIF",
+      "defaultName": "Gambar",
+      "filterName": "Gambar",
+      "summary": "{{count}} gambar",
+      "running": "Membuat PDF…",
+      "done": "PDF berhasil dibuat",
+      "doneDetails": "{{count}} halaman · {{size}}",
+      "pageSizeLabel": "Ukuran halaman",
+      "pageSize": {
+        "fit": "Sesuai gambar",
+        "a4": "A4",
+        "f4": "F4 / Folio (215 × 330 mm)",
+        "letter": "Letter",
+        "legal": "Legal"
+      },
+      "orientationLabel": "Orientasi",
+      "orientation": {
+        "auto": "Otomatis",
+        "portrait": "Portrait",
+        "landscape": "Landscape"
+      },
+      "orientationFitHint": "Saat ukuran sesuai gambar, tiap halaman mengikuti bentuk gambarnya.",
+      "more": "Lainnya",
+      "marginLabel": "Margin",
+      "margin": {
+        "none": "Tanpa",
+        "small": "Kecil",
+        "medium": "Sedang",
+        "large": "Besar"
+      },
+      "qualityLabel": "Kualitas gambar",
+      "quality": {
+        "original": "Asli",
+        "high": "Tinggi",
+        "medium": "Sedang",
+        "low": "Kecil"
+      },
+      "qualityHint": {
+        "original": "Gambar tidak diubah, file bisa besar.",
+        "high": "Tajam, cocok untuk dicetak.",
+        "medium": "Pas untuk kebanyakan keperluan.",
+        "low": "File paling kecil, cocok untuk diunggah."
+      }
     }
   },
   "dropZone": {
@@ -85,6 +127,7 @@
     "invalid": "{{name}} rusak atau bukan PDF",
     "io": "{{name}} tidak bisa dibaca atau disimpan",
     "no_input": "Belum ada file untuk diproses",
-    "unknown": "Terjadi kesalahan. Coba lagi."
+    "unknown": "Terjadi kesalahan. Coba lagi.",
+    "invalid_image": "{{name}} rusak atau formatnya tidak didukung"
   }
 }

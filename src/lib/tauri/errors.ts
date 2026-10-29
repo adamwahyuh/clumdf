@@ -8,7 +8,7 @@ export interface AppError {
   path?: string;
 }
 
-const knownCodes = ["encrypted", "invalid", "io", "no_input"];
+const knownCodes = ["encrypted", "invalid", "invalid_image", "io", "no_input"];
 
 export function toAppError(err: unknown): AppError {
   if (typeof err === "object" && err !== null && "code" in err) return err as AppError;

@@ -13,3 +13,4 @@ export interface QueuedFile {
 }
 
 export const PDF_EXTENSIONS = ["pdf"] as const;
+export const IMAGE_EXTENSIONS = ["jpg", "jpeg", "png", "webp", "bmp", "tif", "tiff", "gif"] as const;

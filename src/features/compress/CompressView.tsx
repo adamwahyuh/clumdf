@@ -1,5 +1,4 @@
 import { useTranslation } from "react-i18next";
-import { toast } from "sonner";
 import { Minimize2, Plus } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ToolHeader } from "@/components/layout/ToolHeader";
@@ -8,9 +7,8 @@ import { ProgressOverlay } from "@/components/common/ProgressOverlay";
 import { DropOverlay } from "@/components/files/DropOverlay";
 import { DropZone } from "@/components/files/DropZone";
 import { SortableFileGrid } from "@/components/files/SortableFileGrid";
-import { useFileDrop } from "@/hooks/use-file-drop";
+import { useFileInput } from "@/hooks/use-file-input";
 import { formatBytes } from "@/lib/format";
-import { pickFiles } from "@/lib/tauri/dialogs";
 import { PDF_EXTENSIONS } from "@/types/files";
 import { CompressResult } from "./CompressResult";
 import { CompressSettings } from "./CompressSettings";
@@ -26,14 +24,7 @@ export function CompressView() {
     add(paths);
   }
 
-  const dragging = useFileDrop(PDF_EXTENSIONS, (paths, rejected) => {
-    if (rejected) toast.warning(t("files.unsupported", { count: rejected }));
-    if (paths.length) addFiles(paths);
-  });
-
-  async function browse() {
-    addFiles(await pickFiles("PDF", [...PDF_EXTENSIONS]));
-  }
+  const { dragging, browse } = useFileInput(PDF_EXTENSIONS, "PDF", addFiles);
 
   const totalSize = files.reduce((sum, f) => sum + (f.size ?? 0), 0);
   const summary =
