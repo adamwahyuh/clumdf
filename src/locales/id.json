@@ -9,7 +9,13 @@
       "title": "Gabungkan PDF",
       "description": "Satukan beberapa PDF menjadi satu file.",
       "action": "Gabungkan PDF",
-      "formats": "PDF"
+      "formats": "PDF",
+      "defaultName": "Gabungan",
+      "summary": "{{files}} file · {{pages}} halaman",
+      "needTwo": "Tambahkan minimal 2 PDF",
+      "running": "Menggabungkan PDF…",
+      "done": "PDF berhasil digabung",
+      "doneDetails": "{{pages}} halaman · {{size}}"
     },
     "compress": {
       "title": "Kecilkan PDF",
@@ -30,5 +36,31 @@
   },
   "actionBar": {
     "empty": "Belum ada file"
+  },
+  "files": {
+    "add": "Tambah file",
+    "remove": "Hapus {{name}}",
+    "loading": "Membaca…",
+    "pages": "{{count}} halaman",
+    "problem": {
+      "encrypted": "Dikunci password",
+      "invalid": "File rusak"
+    },
+    "hasProblems": "Hapus file yang ditandai merah dulu",
+    "unsupported": "{{count}} file dilewati karena formatnya tidak didukung",
+    "dropToAdd": "Lepaskan untuk menambahkan"
+  },
+  "result": {
+    "revealMac": "Tampilkan di Finder",
+    "revealWindows": "Tampilkan di Explorer",
+    "revealOther": "Buka folder",
+    "again": "Proses lagi"
+  },
+  "errors": {
+    "encrypted": "{{name}} dikunci dengan password",
+    "invalid": "{{name}} rusak atau bukan PDF",
+    "io": "{{name}} tidak bisa dibaca atau disimpan",
+    "no_input": "Belum ada file untuk diproses",
+    "unknown": "Terjadi kesalahan. Coba lagi."
   }
 }

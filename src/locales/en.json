@@ -9,7 +9,13 @@
       "title": "Merge PDF",
       "description": "Combine several PDFs into one file.",
       "action": "Merge PDF",
-      "formats": "PDF"
+      "formats": "PDF",
+      "defaultName": "Merged",
+      "summary": "{{files}} files · {{pages}} pages",
+      "needTwo": "Add at least 2 PDFs",
+      "running": "Merging PDFs…",
+      "done": "PDFs merged",
+      "doneDetails": "{{pages}} pages · {{size}}"
     },
     "compress": {
       "title": "Compress PDF",
@@ -30,5 +36,33 @@
   },
   "actionBar": {
     "empty": "No files yet"
+  },
+  "files": {
+    "add": "Add files",
+    "remove": "Remove {{name}}",
+    "loading": "Reading…",
+    "pages_one": "{{count}} page",
+    "pages_other": "{{count}} pages",
+    "problem": {
+      "encrypted": "Password protected",
+      "invalid": "Damaged file"
+    },
+    "hasProblems": "Remove the files marked in red first",
+    "unsupported_one": "{{count}} file skipped: format not supported",
+    "unsupported_other": "{{count}} files skipped: format not supported",
+    "dropToAdd": "Drop to add"
+  },
+  "result": {
+    "revealMac": "Show in Finder",
+    "revealWindows": "Show in Explorer",
+    "revealOther": "Open folder",
+    "again": "Start over"
+  },
+  "errors": {
+    "encrypted": "{{name}} is password protected",
+    "invalid": "{{name}} is damaged or not a PDF",
+    "io": "{{name}} couldn't be read or saved",
+    "no_input": "No files to process",
+    "unknown": "Something went wrong. Please try again."
   }
 }

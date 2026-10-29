@@ -11,7 +11,7 @@ export function AppShell({ activeId, onSelect, children }: AppShellProps) {
   return (
     <div className="flex h-full overflow-hidden">
       <Sidebar activeId={activeId} onSelect={onSelect} />
-      <main className="flex min-w-0 flex-1 flex-col">{children}</main>
+      <main className="relative flex min-w-0 flex-1 flex-col">{children}</main>
     </div>
   );
 }
