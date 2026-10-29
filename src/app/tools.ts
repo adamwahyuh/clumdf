@@ -10,6 +10,7 @@ import {
   Minimize2,
   PanelTop,
   Scissors,
+  Signature,
   type LucideIcon,
 } from "lucide-react";
 import { MergeView } from "@/features/merge/MergeView";
@@ -21,6 +22,7 @@ import { OrganizeView } from "@/features/organize/OrganizeView";
 import { PageNumbersView } from "@/features/page-numbers/PageNumbersView";
 import { ProtectView } from "@/features/password/ProtectView";
 import { UnlockView } from "@/features/password/UnlockView";
+import { SignatureView } from "@/features/signature/SignatureView";
 import { SplitView } from "@/features/split/SplitView";
 
 export type ToolGroup = "organize" | "edit" | "optimize" | "convert" | "security";
@@ -39,6 +41,7 @@ export const tools: Tool[] = [
   { id: "merge", group: "organize", icon: FileStack, i18nKey: "tools.merge", view: MergeView },
   { id: "split", group: "organize", icon: Scissors, i18nKey: "tools.split", view: SplitView },
   { id: "organize", group: "organize", icon: LayoutGrid, i18nKey: "tools.organize", view: OrganizeView },
+  { id: "signature", group: "edit", icon: Signature, i18nKey: "tools.signature", view: SignatureView },
   { id: "page-numbers", group: "edit", icon: ListOrdered, i18nKey: "tools.pageNumbers", view: PageNumbersView },
   { id: "header-footer", group: "edit", icon: PanelTop, i18nKey: "tools.headerFooter", view: HeaderFooterView },
   { id: "compress", group: "optimize", icon: Minimize2, i18nKey: "tools.compress", view: CompressView },

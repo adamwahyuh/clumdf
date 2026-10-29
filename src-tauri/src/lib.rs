@@ -18,6 +18,8 @@ pub fn run() {
             commands::organize::edit_pages,
             commands::password::protect_pdf,
             commands::password::unlock_pdf,
+            commands::signature::import_signature,
+            commands::signature::place_signature,
             commands::split::split_pdf,
             commands::stamp::stamp_text,
         ])

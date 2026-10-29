@@ -10,9 +10,11 @@ pub mod inspect;
 pub mod merge;
 pub mod metadata;
 pub mod organize;
+mod overlay;
 mod page_tree;
 pub mod password;
 pub mod progress;
+pub mod signature;
 pub mod split;
 pub mod stamp;
 
@@ -25,5 +27,6 @@ pub use metadata::{StripReport, strip_metadata};
 pub use organize::{PageEdit, PagesReport, edit_pages};
 pub use password::{PasswordReport, protect_pdf, unlock_pdf};
 pub use progress::ProgressReporter;
+pub use signature::{Placement, SignReport, SignatureInfo, place_signature, prepare_signature};
 pub use split::{SplitMode, SplitReport, split_pdf};
 pub use stamp::{StampOptions, StampReport, TextStamp, stamp_text};

@@ -138,3 +138,36 @@ export interface StampReport {
 export function stampText(args: { input: string; output: string; options: StampOptions }): Promise<StampReport> {
   return invoke("stamp_text", args);
 }
+
+export interface SignatureInfo {
+  path: string;
+  width: number;
+  height: number;
+}
+
+/** Posisi sebagai pecahan (0–1) halaman yang terlihat, asal kiri-atas. */
+export interface Placement {
+  page: number;
+  x: number;
+  y: number;
+  width: number;
+  height: number;
+}
+
+export interface SignReport {
+  signedPages: number;
+  outputSize: number;
+}
+
+export function importSignature(source: string): Promise<SignatureInfo> {
+  return invoke("import_signature", { source });
+}
+
+export function placeSignature(args: {
+  input: string;
+  output: string;
+  signature: string;
+  placements: Placement[];
+}): Promise<SignReport> {
+  return invoke("place_signature", args);
+}

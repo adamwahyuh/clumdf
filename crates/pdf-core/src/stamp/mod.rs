@@ -6,12 +6,12 @@ pub use layout::Position;
 use std::fmt::Write as _;
 use std::path::Path;
 
-use lopdf::{Dictionary, Document, Object, ObjectId, Stream};
+use lopdf::{Dictionary, Object, ObjectId};
 use serde::{Deserialize, Serialize};
 
 use crate::document;
 use crate::error::PdfError;
-use crate::page_tree;
+use crate::overlay;
 
 /// Nama font di Resources halaman; dibuat unik supaya tidak bentrok dengan font asli.
 const FONT_NAME: &str = "BerkasHelv";
@@ -63,13 +63,12 @@ pub fn stamp_text(input: &Path, output: &Path, options: &StampOptions) -> Result
         ("BaseFont", Object::Name(b"Helvetica".to_vec())),
         ("Encoding", Object::Name(b"WinAnsiEncoding".to_vec())),
     ]));
-    // Konten asli dibungkus q … Q supaya keadaan grafisnya tidak memengaruhi teks kita
-    let save_state = doc.add_object(Stream::new(Dictionary::new(), b"q\n".to_vec()));
+    let save_state = overlay::save_state_stream(&mut doc);
 
     for (i, &page_id) in pages.iter().enumerate().skip(skip) {
         let number = options.first_number as usize + i - skip;
-        let page = prepare_page(&mut doc, page_id, font).map_err(|e| PdfError::invalid(input, e))?;
-        let mut content = String::from("Q\n");
+        let page = overlay::prepare_page(&mut doc, page_id, b"Font", FONT_NAME, font).map_err(|e| PdfError::invalid(input, e))?;
+        let mut content = String::new();
         for stamp in options.stamps.iter().filter(|s| !s.text.trim().is_empty()) {
             let text = stamp.text.replace("{page}", &number.to_string()).replace("{total}", &total.to_string());
             let encoded = helvetica::encode(&text);
@@ -82,62 +81,11 @@ pub fn stamp_text(input: &Path, output: &Path, options: &StampOptions) -> Result
                 "q {a} {b} {c} {d} {e} {f} cm BT 0 g /{FONT_NAME} {font_size} Tf {x:.2} {y:.2} Td <{hex}> Tj ET Q"
             );
         }
-        let stamp_id = doc.add_object(Stream::new(Dictionary::new(), content.into_bytes()));
-        wrap_contents(&mut doc, page_id, save_state, stamp_id).map_err(|e| PdfError::invalid(input, e))?;
+        overlay::wrap_contents(&mut doc, page_id, save_state, content).map_err(|e| PdfError::invalid(input, e))?;
     }
 
     doc.compress();
     document::save(&mut doc, output)?;
     let output_size = std::fs::metadata(output).map_err(|e| PdfError::io(output, e))?.len();
     Ok(StampReport { page_count: pages.len(), output_size })
-}
-
-/// Salin atribut warisan ke halaman, pasang font kita di Resources halaman,
-/// dan hitung bentuk halaman yang terlihat.
-fn prepare_page(doc: &mut Document, page_id: ObjectId, font: ObjectId) -> lopdf::Result<layout::VisiblePage> {
-    let inherited = page_tree::inherited_attributes(doc, page_id);
-    let resolve = |doc: &Document, value: Option<&Object>| -> Dictionary {
-        match value {
-            Some(Object::Reference(id)) => doc.get_dictionary(*id).cloned().unwrap_or_default(),
-            Some(Object::Dictionary(dict)) => dict.clone(),
-            _ => Dictionary::new(),
-        }
-    };
-
-    let page = doc.get_dictionary(page_id)?;
-    let lookup = |key: &[u8]| page.get(key).ok().or_else(|| inherited.iter().find(|(k, _)| *k == key).map(|(_, v)| v));
-    // Resources bisa dipakai bersama halaman lain; salinan langsung di halaman aman diubah
-    let mut resources = resolve(doc, lookup(b"Resources"));
-    let mut fonts = resolve(doc, resources.get(b"Font").ok());
-    fonts.set(FONT_NAME, font);
-    resources.set("Font", fonts);
-
-    let number = |o: &Object| o.as_float().ok().or_else(|| o.as_i64().ok().map(|n| n as f32));
-    let bbox = lookup(b"CropBox")
-        .or_else(|| lookup(b"MediaBox"))
-        .and_then(|o| o.as_array().ok())
-        .and_then(|a| Some([number(a.first()?)?, number(a.get(1)?)?, number(a.get(2)?)?, number(a.get(3)?)?]))
-        .unwrap_or([0.0, 0.0, 595.0, 842.0]); // A4 bila PDF tidak menyebut ukuran
-    let rotate = lookup(b"Rotate").and_then(|o| o.as_i64().ok()).unwrap_or(0);
-
-    let page = doc.get_dictionary_mut(page_id)?;
-    for (key, value) in inherited {
-        page.set(key, value);
-    }
-    page.set("Resources", resources);
-    Ok(layout::visible_page(bbox, rotate))
-}
-
-/// Contents baru: [q, …konten asli…, Q + teks kita].
-fn wrap_contents(doc: &mut Document, page_id: ObjectId, save_state: ObjectId, stamp: ObjectId) -> lopdf::Result<()> {
-    let page = doc.get_dictionary_mut(page_id)?;
-    let mut contents = vec![Object::Reference(save_state)];
-    match page.get(b"Contents") {
-        Ok(Object::Array(items)) => contents.extend(items.iter().cloned()),
-        Ok(other) => contents.push(other.clone()),
-        Err(_) => {}
-    }
-    contents.push(Object::Reference(stamp));
-    page.set("Contents", contents);
-    Ok(())
 }
