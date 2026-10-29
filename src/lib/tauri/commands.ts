@@ -96,3 +96,13 @@ export interface PagesReport {
 export function editPages(args: { input: string; output: string; pages: PageEdit[] }): Promise<PagesReport> {
   return invoke("edit_pages", args);
 }
+
+export interface StripReport {
+  outputSize: number;
+  /** 0 = file memang sudah bersih */
+  removed: number;
+}
+
+export function stripMetadata(args: { input: string; output: string }): Promise<StripReport> {
+  return invoke("strip_metadata", args);
+}

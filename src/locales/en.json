@@ -2,7 +2,8 @@
   "groups": {
     "organize": "Organize",
     "optimize": "Optimize",
-    "convert": "Convert"
+    "convert": "Convert",
+    "security": "Security"
   },
   "tools": {
     "merge": {
@@ -82,8 +83,6 @@
       },
       "grayscale": "Black & white",
       "grayscaleHint": "Turn images inside the PDF black & white.",
-      "summary_one": "{{count}} file · {{size}}",
-      "summary_other": "{{count}} files · {{size}}",
       "running": "Compressing file {{current}} of {{total}}…",
       "done": "PDFs compressed",
       "allOptimal": "Already optimal",
@@ -162,6 +161,16 @@
         "folio": "F4 / Folio Document",
         "foto": "Photos as they are"
       }
+    },
+    "metadata": {
+      "title": "Remove Metadata",
+      "description": "Strip author, app, and other hidden info before sharing.",
+      "action": "Remove metadata",
+      "formats": "PDF",
+      "running": "Cleaning file {{current}} of {{total}}…",
+      "done": "Metadata removed",
+      "doneDetails_one": "{{count}} clean file saved with the -clean suffix",
+      "doneDetails_other": "{{count}} clean files saved with the -clean suffix"
     }
   },
   "dropZone": {
@@ -185,7 +194,9 @@
     "unsupported_one": "{{count}} file skipped: format not supported",
     "unsupported_other": "{{count}} files skipped: format not supported",
     "dropToAdd": "Drop to add",
-    "replace": "Replace file"
+    "replace": "Replace file",
+    "summary_one": "{{count}} file · {{size}}",
+    "summary_other": "{{count}} files · {{size}}"
   },
   "result": {
     "revealMac": "Show in Finder",

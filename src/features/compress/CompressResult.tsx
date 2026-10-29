@@ -1,11 +1,12 @@
 import { useTranslation } from "react-i18next";
 import { ArrowRight } from "lucide-react";
 import { ResultCard } from "@/components/common/ResultCard";
+import type { BatchResult } from "@/hooks/use-batch";
 import { formatBytes } from "@/lib/format";
-import type { CompressedFile } from "./use-compress";
+import type { CompressReport } from "@/lib/tauri/commands";
 
 interface CompressResultProps {
-  results: CompressedFile[];
+  results: BatchResult<CompressReport>[];
   onReset: () => void;
 }
 
@@ -22,7 +23,7 @@ export function CompressResult({ results, onReset }: CompressResultProps) {
       onReset={onReset}
       details={
         <ul className="mt-2 flex flex-col gap-2 text-left">
-          {results.map(({ name, report }, i) => {
+          {results.map(({ file: { name }, report }, i) => {
             const saved = Math.round((1 - report.compressedSize / report.originalSize) * 100);
             return (
               <li key={i} className="flex flex-col gap-0.5 rounded-lg bg-muted px-3 py-2">

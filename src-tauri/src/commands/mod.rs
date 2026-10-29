@@ -2,6 +2,7 @@ pub mod compress;
 pub mod image_to_pdf;
 pub mod inspect;
 pub mod merge;
+pub mod metadata;
 pub mod organize;
 pub mod split;
 

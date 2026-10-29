@@ -2,7 +2,8 @@
   "groups": {
     "organize": "Atur",
     "optimize": "Optimasi",
-    "convert": "Konversi"
+    "convert": "Konversi",
+    "security": "Keamanan"
   },
   "tools": {
     "merge": {
@@ -78,7 +79,6 @@
       },
       "grayscale": "Hitam-putih",
       "grayscaleHint": "Ubah gambar di dalam PDF menjadi hitam-putih.",
-      "summary": "{{count}} file · {{size}}",
       "running": "Mengecilkan file {{current}} dari {{total}}…",
       "done": "PDF berhasil dikecilkan",
       "allOptimal": "File ini sudah optimal",
@@ -155,6 +155,15 @@
         "folio": "Dokumen F4 / Folio",
         "foto": "Foto apa adanya"
       }
+    },
+    "metadata": {
+      "title": "Hapus Metadata",
+      "description": "Buang nama penulis, aplikasi, dan info tersembunyi lain sebelum dibagikan.",
+      "action": "Hapus metadata",
+      "formats": "PDF",
+      "running": "Membersihkan file {{current}} dari {{total}}…",
+      "done": "Metadata berhasil dihapus",
+      "doneDetails": "{{count}} file bersih disimpan dengan akhiran -clean"
     }
   },
   "dropZone": {
@@ -176,7 +185,8 @@
     "hasProblems": "Hapus file yang ditandai merah dulu",
     "unsupported": "{{count}} file dilewati karena formatnya tidak didukung",
     "dropToAdd": "Lepaskan untuk menambahkan",
-    "replace": "Ganti file"
+    "replace": "Ganti file",
+    "summary": "{{count}} file · {{size}}"
   },
   "result": {
     "revealMac": "Tampilkan di Finder",
