@@ -24,6 +24,8 @@ export interface CompressOptions {
   maxDimension: number;
   jpegQuality: number;
   grayscale: boolean;
+  /** Target ukuran (byte); jika diisi, resolusi & kualitas dipilih otomatis */
+  targetSize: number | null;
 }
 
 export interface CompressReport {
@@ -31,6 +33,8 @@ export interface CompressReport {
   compressedSize: number;
   imagesOptimized: number;
   alreadyOptimal: boolean;
+  /** null jika tanpa target */
+  targetMet: boolean | null;
 }
 
 export function compressPdf(args: {

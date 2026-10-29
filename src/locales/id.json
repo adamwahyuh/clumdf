@@ -84,7 +84,18 @@
       "allOptimal": "File ini sudah optimal",
       "optimal": "Sudah optimal, file asli dipertahankan",
       "becomes": "menjadi",
-      "saved": "hemat {{percent}}%"
+      "saved": "hemat {{percent}}%",
+      "targetLabel": "Target ukuran",
+      "targets": {
+        "none": "Tanpa target",
+        "500k": "Di bawah 500 KB",
+        "1m": "Di bawah 1 MB",
+        "2m": "Di bawah 2 MB",
+        "custom": "Ukuran lain…"
+      },
+      "customLabel": "Ukuran maksimal (MB)",
+      "levelAuto": "Diatur otomatis supaya file muat di target.",
+      "targetMissed": "Belum muat di target. Ini hasil terkecil yang bisa dicapai."
     },
     "imageToPdf": {
       "title": "Gambar ke PDF",

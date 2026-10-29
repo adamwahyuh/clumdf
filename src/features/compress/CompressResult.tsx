@@ -29,6 +29,9 @@ export function CompressResult({ results, onReset }: CompressResultProps) {
                 <span className="truncate font-medium text-foreground" title={name}>
                   {name}
                 </span>
+                {report.targetMet === false && (
+                  <span className="text-destructive">{t("tools.compress.targetMissed")}</span>
+                )}
                 {report.alreadyOptimal ? (
                   <span>{t("tools.compress.optimal")}</span>
                 ) : (

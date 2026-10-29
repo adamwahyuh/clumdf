@@ -10,4 +10,8 @@ pub struct CompressOptions {
     pub jpeg_quality: u8,
     /// Ubah gambar menjadi hitam-putih
     pub grayscale: bool,
+    /// Target ukuran file (byte). Jika diisi, `max_dimension` & `jpeg_quality`
+    /// diabaikan dan dipilih otomatis.
+    #[serde(default)]
+    pub target_size: Option<u64>,
 }

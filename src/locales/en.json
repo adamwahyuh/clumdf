@@ -89,7 +89,18 @@
       "allOptimal": "Already optimal",
       "optimal": "Already optimal, original kept",
       "becomes": "becomes",
-      "saved": "{{percent}}% smaller"
+      "saved": "{{percent}}% smaller",
+      "targetLabel": "Target size",
+      "targets": {
+        "none": "No target",
+        "500k": "Under 500 KB",
+        "1m": "Under 1 MB",
+        "2m": "Under 2 MB",
+        "custom": "Other size…"
+      },
+      "customLabel": "Maximum size (MB)",
+      "levelAuto": "Set automatically to fit the target.",
+      "targetMissed": "Didn't fit the target. This is the smallest possible result."
     },
     "imageToPdf": {
       "title": "Images to PDF",

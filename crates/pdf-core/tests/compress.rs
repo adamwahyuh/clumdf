@@ -9,7 +9,7 @@ fn no_progress(_: usize, _: usize) {}
 
 /// Preset "Seimbang"
 fn balanced() -> CompressOptions {
-    CompressOptions { max_dimension: 1600, jpeg_quality: 65, grayscale: false }
+    CompressOptions { max_dimension: 1600, jpeg_quality: 65, grayscale: false, target_size: None }
 }
 
 fn photo_pdf(dir: &std::path::Path) -> std::path::PathBuf {
@@ -135,4 +135,53 @@ fn encrypted_pdf_is_rejected() {
     let err = compress_pdf(&input, &dir.join("out.pdf"), &balanced(), &no_progress).unwrap_err();
 
     assert_eq!(err.code(), "encrypted");
+}
+
+fn target(bytes: u64) -> CompressOptions {
+    CompressOptions { target_size: Some(bytes), ..balanced() }
+}
+
+#[test]
+fn target_size_is_met_with_the_mildest_setting_that_fits() {
+    let dir = temp_dir("compress-target");
+    let input = photo_pdf(&dir);
+    let tight = dir.join("tight.pdf");
+    let loose = dir.join("loose.pdf");
+
+    let tight_report = compress_pdf(&input, &tight, &target(150 * 1024), &no_progress).unwrap();
+    let loose_report = compress_pdf(&input, &loose, &target(1024 * 1024), &no_progress).unwrap();
+
+    assert_eq!(tight_report.target_met, Some(true));
+    assert!(tight_report.compressed_size <= 150 * 1024, "{tight_report:?}");
+    assert_eq!(loose_report.target_met, Some(true));
+    // Target longgar tidak boleh menurunkan kualitas lebih dari perlu
+    let width = |p: &std::path::Path| images_in(p)[0].dict.get(b"Width").unwrap().as_i64().unwrap();
+    assert!(width(&loose) > width(&tight), "loose {} tight {}", width(&loose), width(&tight));
+}
+
+#[test]
+fn unreachable_target_keeps_smallest_result_and_says_so() {
+    let dir = temp_dir("compress-target-miss");
+    let input = photo_pdf(&dir);
+    let out = dir.join("out.pdf");
+    let calls = std::sync::Mutex::new(0);
+
+    let report = compress_pdf(&input, &out, &target(1024), &|_, _| *calls.lock().unwrap() += 1).unwrap();
+
+    assert_eq!(report.target_met, Some(false));
+    assert!(report.compressed_size < report.original_size);
+    assert!(*calls.lock().unwrap() <= 2, "cukup satu percobaan paling agresif");
+}
+
+#[test]
+fn file_already_under_target_is_left_untouched() {
+    let dir = temp_dir("compress-target-under");
+    let input = photo_pdf(&dir);
+    let out = dir.join("out.pdf");
+
+    let report = compress_pdf(&input, &out, &target(500 * 1024 * 1024), &no_progress).unwrap();
+
+    assert!(report.already_optimal);
+    assert_eq!(report.target_met, Some(true));
+    assert_eq!(std::fs::read(&out).unwrap(), std::fs::read(&input).unwrap());
 }

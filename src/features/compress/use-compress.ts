@@ -7,7 +7,7 @@ import { compressPdf, type CompressReport } from "@/lib/tauri/commands";
 import { errorMessage, toAppError } from "@/lib/tauri/errors";
 import { createFileQueue, inspectPdfFile } from "@/stores/create-file-queue";
 import { useSettings } from "@/stores/settings-store";
-import { compressPresets } from "./presets";
+import { compressPresets, resolveTarget } from "./presets";
 
 export const useCompressQueue = createFileQueue(inspectPdfFile);
 
@@ -31,7 +31,11 @@ export function useCompress() {
 
   async function compress() {
     if (!canCompress) return;
-    const options = { ...compressPresets[settings.preset], grayscale: settings.grayscale };
+    const options = {
+      ...compressPresets[settings.preset],
+      grayscale: settings.grayscale,
+      targetSize: resolveTarget(settings.target, settings.customMb),
+    };
     const done: CompressedFile[] = [];
 
     try {

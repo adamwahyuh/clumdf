@@ -1,11 +1,14 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
-import type { CompressPreset } from "@/features/compress/presets";
+import type { CompressPreset, CompressTarget } from "@/features/compress/presets";
 import type { ImageToPdfOptions } from "@/lib/tauri/commands";
 
 interface CompressSettings {
   preset: CompressPreset;
   grayscale: boolean;
+  target: CompressTarget;
+  /** Target custom dalam MB */
+  customMb: number;
 }
 
 export type Language = "id" | "en";
@@ -34,7 +37,7 @@ export const useSettings = create<SettingsState>()(
   persist(
     (set) => ({
       language: "id",
-      compress: { preset: "balanced", grayscale: false },
+      compress: { preset: "balanced", grayscale: false, target: "none", customMb: 1 },
       imageToPdf: { pageSize: "a4", orientation: "auto", margin: "none", quality: "medium" },
       split: { mode: "eachPage", n: 2 },
       setLanguage: (language) => set({ language }),

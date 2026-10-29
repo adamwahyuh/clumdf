@@ -1,18 +1,24 @@
 import { useTranslation } from "react-i18next";
+import { Input } from "@/components/ui/input";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Switch } from "@/components/ui/switch";
 import { SegmentedControl } from "@/components/common/SegmentedControl";
 import { SettingRow } from "@/components/common/SettingRow";
 import { SettingsPanel } from "@/components/common/SettingsPanel";
 import { useSettings } from "@/stores/settings-store";
-import { compressPresetOrder } from "./presets";
+import { compressPresetOrder, compressTargetOrder, type CompressTarget } from "./presets";
 
 export function CompressSettings() {
   const { t } = useTranslation();
   const { compress, setCompress } = useSettings();
+  const hasTarget = compress.target !== "none";
 
   return (
     <SettingsPanel>
-      <SettingRow label={t("tools.compress.level")} hint={t(`tools.compress.presets.${compress.preset}.hint`)}>
+      <SettingRow
+        label={t("tools.compress.level")}
+        hint={t(hasTarget ? "tools.compress.levelAuto" : `tools.compress.presets.${compress.preset}.hint`)}
+      >
         <SegmentedControl
           aria-label={t("tools.compress.level")}
           value={compress.preset}
@@ -21,9 +27,41 @@ export function CompressSettings() {
             value,
             label: t(`tools.compress.presets.${value}.label`),
           }))}
+          disabled={hasTarget}
         />
       </SettingRow>
-      <SettingRow label={t("tools.compress.grayscale")} htmlFor="compress-grayscale" hint={t("tools.compress.grayscaleHint")} inline>
+      <SettingRow label={t("tools.compress.targetLabel")} htmlFor="compress-target">
+        <Select value={compress.target} onValueChange={(target) => setCompress({ target: target as CompressTarget })}>
+          <SelectTrigger id="compress-target" className="w-full">
+            <SelectValue />
+          </SelectTrigger>
+          <SelectContent>
+            {compressTargetOrder.map((target) => (
+              <SelectItem key={target} value={target}>
+                {t(`tools.compress.targets.${target}`)}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+      </SettingRow>
+      {compress.target === "custom" && (
+        <SettingRow label={t("tools.compress.customLabel")} htmlFor="compress-custom">
+          <Input
+            id="compress-custom"
+            type="number"
+            min={0.05}
+            step={0.1}
+            value={compress.customMb}
+            onChange={(e) => setCompress({ customMb: Number(e.target.value) || 0 })}
+          />
+        </SettingRow>
+      )}
+      <SettingRow
+        label={t("tools.compress.grayscale")}
+        htmlFor="compress-grayscale"
+        hint={t("tools.compress.grayscaleHint")}
+        inline
+      >
         <Switch
           id="compress-grayscale"
           checked={compress.grayscale}
