@@ -1,15 +1,29 @@
 import type { ComponentType } from "react";
-import { FileStack, FileX2, Images, LayoutGrid, Lock, LockOpen, Minimize2, Scissors, type LucideIcon } from "lucide-react";
+import {
+  FileStack,
+  FileX2,
+  Images,
+  LayoutGrid,
+  ListOrdered,
+  Lock,
+  LockOpen,
+  Minimize2,
+  PanelTop,
+  Scissors,
+  type LucideIcon,
+} from "lucide-react";
 import { MergeView } from "@/features/merge/MergeView";
 import { CompressView } from "@/features/compress/CompressView";
+import { HeaderFooterView } from "@/features/header-footer/HeaderFooterView";
 import { ImageToPdfView } from "@/features/image-to-pdf/ImageToPdfView";
 import { MetadataView } from "@/features/metadata/MetadataView";
 import { OrganizeView } from "@/features/organize/OrganizeView";
+import { PageNumbersView } from "@/features/page-numbers/PageNumbersView";
 import { ProtectView } from "@/features/password/ProtectView";
 import { UnlockView } from "@/features/password/UnlockView";
 import { SplitView } from "@/features/split/SplitView";
 
-export type ToolGroup = "organize" | "optimize" | "convert" | "security";
+export type ToolGroup = "organize" | "edit" | "optimize" | "convert" | "security";
 
 export interface Tool {
   id: string;
@@ -25,6 +39,8 @@ export const tools: Tool[] = [
   { id: "merge", group: "organize", icon: FileStack, i18nKey: "tools.merge", view: MergeView },
   { id: "split", group: "organize", icon: Scissors, i18nKey: "tools.split", view: SplitView },
   { id: "organize", group: "organize", icon: LayoutGrid, i18nKey: "tools.organize", view: OrganizeView },
+  { id: "page-numbers", group: "edit", icon: ListOrdered, i18nKey: "tools.pageNumbers", view: PageNumbersView },
+  { id: "header-footer", group: "edit", icon: PanelTop, i18nKey: "tools.headerFooter", view: HeaderFooterView },
   { id: "compress", group: "optimize", icon: Minimize2, i18nKey: "tools.compress", view: CompressView },
   { id: "image-to-pdf", group: "convert", icon: Images, i18nKey: "tools.imageToPdf", view: ImageToPdfView },
   { id: "protect", group: "security", icon: Lock, i18nKey: "tools.protect", view: ProtectView },
@@ -32,4 +48,4 @@ export const tools: Tool[] = [
   { id: "metadata", group: "security", icon: FileX2, i18nKey: "tools.metadata", view: MetadataView },
 ];
 
-export const toolGroups: ToolGroup[] = ["organize", "optimize", "convert", "security"];
+export const toolGroups: ToolGroup[] = ["organize", "edit", "optimize", "convert", "security"];

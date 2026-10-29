@@ -3,7 +3,8 @@
     "organize": "Organize",
     "optimize": "Optimize",
     "convert": "Convert",
-    "security": "Security"
+    "security": "Security",
+    "edit": "Edit"
   },
   "tools": {
     "merge": {
@@ -193,6 +194,49 @@
       "done": "PDFs unlocked",
       "doneDetails_one": "{{count}} file saved with the -unlocked suffix",
       "doneDetails_other": "{{count}} files saved with the -unlocked suffix"
+    },
+    "pageNumbers": {
+      "title": "Page Numbers",
+      "description": "Number every page of a PDF.",
+      "action": "Add numbers",
+      "formatLabel": "Format",
+      "positionLabel": "Position",
+      "firstNumber": "Start at number",
+      "skipFirst": "Skip first page",
+      "skipFirstHint": "For a cover page: numbering starts on page two.",
+      "running": "Numbering file {{current}} of {{total}}…",
+      "done": "Page numbers added",
+      "doneDetails_one": "{{count}} file saved with the -numbered suffix",
+      "doneDetails_other": "{{count}} files saved with the -numbered suffix",
+      "templates": {
+        "plain": "{page}",
+        "page": "Page {page}",
+        "ofTotal": "{page} / {total}",
+        "pageOfTotal": "Page {page} of {total}"
+      },
+      "formats": "PDF"
+    },
+    "headerFooter": {
+      "title": "Header & Footer",
+      "description": "Add text at the top or bottom of every page.",
+      "action": "Add",
+      "formats": "PDF",
+      "header": "Header (top)",
+      "footer": "Footer (bottom)",
+      "headerAlign": "Header alignment",
+      "footerAlign": "Footer alignment",
+      "headerPlaceholder": "e.g. Application Attachment — Jane Doe",
+      "footerPlaceholder": "e.g. Confidential · Page {page}",
+      "placeholdersHint": "Type {page} for the page number and {total} for the page count.",
+      "aligns": {
+        "left": "Left",
+        "center": "Center",
+        "right": "Right"
+      },
+      "running": "Adding text to file {{current}} of {{total}}…",
+      "done": "Header & footer added",
+      "doneDetails_one": "{{count}} file saved with the -header suffix",
+      "doneDetails_other": "{{count}} files saved with the -header suffix"
     }
   },
   "dropZone": {
@@ -261,5 +305,21 @@
     "mismatch": "Passwords don't match",
     "show": "Show password",
     "hide": "Hide password"
+  },
+  "positions": {
+    "topLeft": "Top left",
+    "topCenter": "Top center",
+    "topRight": "Top right",
+    "bottomLeft": "Bottom left",
+    "bottomCenter": "Bottom center",
+    "bottomRight": "Bottom right"
+  },
+  "stamp": {
+    "fontSize": "Font size",
+    "sizes": {
+      "small": "Small",
+      "medium": "Medium",
+      "large": "Large"
+    }
   }
 }

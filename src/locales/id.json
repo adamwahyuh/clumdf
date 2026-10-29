@@ -3,7 +3,8 @@
     "organize": "Atur",
     "optimize": "Optimasi",
     "convert": "Konversi",
-    "security": "Keamanan"
+    "security": "Keamanan",
+    "edit": "Sunting"
   },
   "tools": {
     "merge": {
@@ -184,6 +185,47 @@
       "running": "Membuka file {{current}} dari {{total}}…",
       "done": "Kunci PDF berhasil dilepas",
       "doneDetails": "{{count}} file disimpan dengan akhiran -unlocked"
+    },
+    "pageNumbers": {
+      "title": "Nomor Halaman",
+      "description": "Beri nomor di setiap halaman PDF.",
+      "action": "Beri nomor",
+      "formatLabel": "Format",
+      "positionLabel": "Posisi",
+      "firstNumber": "Mulai dari nomor",
+      "skipFirst": "Lewati halaman pertama",
+      "skipFirstHint": "Untuk sampul: penomoran dimulai di halaman kedua.",
+      "running": "Memberi nomor file {{current}} dari {{total}}…",
+      "done": "Nomor halaman berhasil ditambahkan",
+      "doneDetails": "{{count}} file disimpan dengan akhiran -numbered",
+      "templates": {
+        "plain": "{page}",
+        "page": "Halaman {page}",
+        "ofTotal": "{page} / {total}",
+        "pageOfTotal": "Halaman {page} dari {total}"
+      },
+      "formats": "PDF"
+    },
+    "headerFooter": {
+      "title": "Header & Footer",
+      "description": "Tambahkan teks di bagian atas atau bawah setiap halaman.",
+      "action": "Tambahkan",
+      "formats": "PDF",
+      "header": "Header (atas)",
+      "footer": "Footer (bawah)",
+      "headerAlign": "Perataan header",
+      "footerAlign": "Perataan footer",
+      "headerPlaceholder": "mis. Lampiran Lamaran — Budi Santoso",
+      "footerPlaceholder": "mis. Rahasia · Halaman {page}",
+      "placeholdersHint": "Tulis {page} untuk nomor halaman dan {total} untuk jumlah halaman.",
+      "aligns": {
+        "left": "Kiri",
+        "center": "Tengah",
+        "right": "Kanan"
+      },
+      "running": "Menambahkan teks ke file {{current}} dari {{total}}…",
+      "done": "Header & footer berhasil ditambahkan",
+      "doneDetails": "{{count}} file disimpan dengan akhiran -header"
     }
   },
   "dropZone": {
@@ -249,5 +291,21 @@
     "mismatch": "Password belum sama",
     "show": "Tampilkan password",
     "hide": "Sembunyikan password"
+  },
+  "positions": {
+    "topLeft": "Kiri atas",
+    "topCenter": "Tengah atas",
+    "topRight": "Kanan atas",
+    "bottomLeft": "Kiri bawah",
+    "bottomCenter": "Tengah bawah",
+    "bottomRight": "Kanan bawah"
+  },
+  "stamp": {
+    "fontSize": "Ukuran huruf",
+    "sizes": {
+      "small": "Kecil",
+      "medium": "Sedang",
+      "large": "Besar"
+    }
   }
 }

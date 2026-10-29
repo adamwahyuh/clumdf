@@ -118,3 +118,23 @@ export function protectPdf(args: { input: string; output: string; password: stri
 export function unlockPdf(args: { input: string; output: string; password: string }): Promise<PasswordReport> {
   return invoke("unlock_pdf", args);
 }
+
+export type StampPosition = "topLeft" | "topCenter" | "topRight" | "bottomLeft" | "bottomCenter" | "bottomRight";
+
+export interface StampOptions {
+  /** Teks dengan penanda {page} dan {total} */
+  stamps: { text: string; position: StampPosition }[];
+  fontSize: number;
+  marginMm: number;
+  firstNumber: number;
+  skipFirst: boolean;
+}
+
+export interface StampReport {
+  pageCount: number;
+  outputSize: number;
+}
+
+export function stampText(args: { input: string; output: string; options: StampOptions }): Promise<StampReport> {
+  return invoke("stamp_text", args);
+}

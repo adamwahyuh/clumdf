@@ -6,6 +6,7 @@ pub mod metadata;
 pub mod organize;
 pub mod password;
 pub mod split;
+pub mod stamp;
 
 use crate::error::CommandResult;
 

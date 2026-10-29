@@ -14,6 +14,7 @@ mod page_tree;
 pub mod password;
 pub mod progress;
 pub mod split;
+pub mod stamp;
 
 pub use compress::{CompressOptions, CompressReport, compress_pdf};
 pub use error::PdfError;
@@ -25,3 +26,4 @@ pub use organize::{PageEdit, PagesReport, edit_pages};
 pub use password::{PasswordReport, protect_pdf, unlock_pdf};
 pub use progress::ProgressReporter;
 pub use split::{SplitMode, SplitReport, split_pdf};
+pub use stamp::{StampOptions, StampReport, TextStamp, stamp_text};

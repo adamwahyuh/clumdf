@@ -19,6 +19,7 @@ pub fn run() {
             commands::password::protect_pdf,
             commands::password::unlock_pdf,
             commands::split::split_pdf,
+            commands::stamp::stamp_text,
         ])
         .run(tauri::generate_context!())
         .expect("gagal menjalankan aplikasi Tauri");
