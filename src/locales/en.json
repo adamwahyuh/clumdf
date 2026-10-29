@@ -1,0 +1,34 @@
+{
+  "groups": {
+    "organize": "Organize",
+    "optimize": "Optimize",
+    "convert": "Convert"
+  },
+  "tools": {
+    "merge": {
+      "title": "Merge PDF",
+      "description": "Combine several PDFs into one file.",
+      "action": "Merge PDF",
+      "formats": "PDF"
+    },
+    "compress": {
+      "title": "Compress PDF",
+      "description": "Shrink PDFs so they're easy to upload.",
+      "action": "Compress",
+      "formats": "PDF"
+    },
+    "imageToPdf": {
+      "title": "Images to PDF",
+      "description": "Turn photos or scans into a single PDF.",
+      "action": "Create PDF",
+      "formats": "JPG, PNG, WebP, BMP, TIFF, GIF"
+    }
+  },
+  "dropZone": {
+    "title": "Drop files here or click to choose",
+    "formats": "Supported formats: {{formats}}"
+  },
+  "actionBar": {
+    "empty": "No files yet"
+  }
+}

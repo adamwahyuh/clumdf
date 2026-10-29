@@ -1,0 +1,34 @@
+{
+  "groups": {
+    "organize": "Atur",
+    "optimize": "Optimasi",
+    "convert": "Konversi"
+  },
+  "tools": {
+    "merge": {
+      "title": "Gabungkan PDF",
+      "description": "Satukan beberapa PDF menjadi satu file.",
+      "action": "Gabungkan PDF",
+      "formats": "PDF"
+    },
+    "compress": {
+      "title": "Kecilkan PDF",
+      "description": "Perkecil ukuran PDF supaya mudah diunggah.",
+      "action": "Kecilkan",
+      "formats": "PDF"
+    },
+    "imageToPdf": {
+      "title": "Gambar ke PDF",
+      "description": "Ubah foto atau hasil scan menjadi satu PDF.",
+      "action": "Buat PDF",
+      "formats": "JPG, PNG, WebP, BMP, TIFF, GIF"
+    }
+  },
+  "dropZone": {
+    "title": "Tarik file ke sini atau klik untuk memilih",
+    "formats": "Format yang didukung: {{formats}}"
+  },
+  "actionBar": {
+    "empty": "Belum ada file"
+  }
+}
