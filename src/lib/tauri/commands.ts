@@ -67,3 +67,28 @@ export function imagesToPdf(args: {
 }): Promise<ImageToPdfReport> {
   return invoke("images_to_pdf", args);
 }
+
+export type SplitMode = { mode: "eachPage" } | { mode: "ranges"; ranges: string } | { mode: "everyN"; n: number };
+
+export interface SplitReport {
+  files: string[];
+}
+
+export function splitPdf(args: { input: string; outputDir: string; mode: SplitMode; jobId: string }): Promise<SplitReport> {
+  return invoke("split_pdf", args);
+}
+
+/** Satu halaman di hasil: nomor halaman asli (mulai 1) + rotasi tambahan (kelipatan 90). */
+export interface PageEdit {
+  page: number;
+  rotate: number;
+}
+
+export interface PagesReport {
+  pageCount: number;
+  outputSize: number;
+}
+
+export function editPages(args: { input: string; output: string; pages: PageEdit[] }): Promise<PagesReport> {
+  return invoke("edit_pages", args);
+}

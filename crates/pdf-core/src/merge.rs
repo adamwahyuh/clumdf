@@ -5,10 +5,8 @@ use serde::Serialize;
 
 use crate::document;
 use crate::error::PdfError;
+use crate::page_tree;
 use crate::progress::ProgressReporter;
-
-/// Atribut halaman yang boleh diwariskan dari node `Pages` induk.
-const INHERITABLE: [&[u8]; 4] = [b"Resources", b"MediaBox", b"CropBox", b"Rotate"];
 
 #[derive(Debug, Clone, Serialize)]
 #[serde(rename_all = "camelCase")]
@@ -36,7 +34,11 @@ pub fn merge_pdfs(
         let mut doc = document::open(path)?;
         // Harus sebelum halaman dipindah: setelah itu node induk lamanya hilang.
         for &page_id in doc.get_pages().values() {
-            inherit_attributes(&mut doc, page_id).map_err(|e| PdfError::invalid(path, e))?;
+            let inherited = page_tree::inherited_attributes(&doc, page_id);
+            let page = doc.get_dictionary_mut(page_id).map_err(|e| PdfError::invalid(path, e))?;
+            for (key, value) in inherited {
+                page.set(key, value);
+            }
         }
         // Geser nomor objek supaya tidak bentrok dengan dokumen sebelumnya.
         doc.renumber_objects_with(merged.max_id + 1);
@@ -78,30 +80,4 @@ pub fn merge_pdfs(
 
     let output_size = std::fs::metadata(output).map_err(|e| PdfError::io(output, e))?.len();
     Ok(MergeReport { page_count: page_ids.len(), output_size })
-}
-
-/// Salin atribut warisan dari node induk ke halaman, supaya halaman tetap
-/// lengkap setelah dipindah ke pohon `Pages` baru.
-fn inherit_attributes(doc: &mut Document, page_id: ObjectId) -> lopdf::Result<()> {
-    let page = doc.get_dictionary(page_id)?;
-    let mut found: Vec<(&[u8], Object)> = Vec::new();
-
-    for key in INHERITABLE.into_iter().filter(|key| !page.has(key)) {
-        let mut parent = page.get(b"Parent").and_then(Object::as_reference).ok();
-        // Batas kedalaman melindungi dari rantai Parent yang melingkar di PDF rusak.
-        for _ in 0..64 {
-            let Some(node) = parent.and_then(|id| doc.get_dictionary(id).ok()) else { break };
-            if let Ok(value) = node.get(key) {
-                found.push((key, value.clone()));
-                break;
-            }
-            parent = node.get(b"Parent").and_then(Object::as_reference).ok();
-        }
-    }
-
-    let page = doc.get_dictionary_mut(page_id)?;
-    for (key, value) in found {
-        page.set(key, value);
-    }
-    Ok(())
 }

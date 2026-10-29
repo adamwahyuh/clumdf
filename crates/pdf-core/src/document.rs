@@ -61,6 +61,20 @@ fn write_synced(path: &Path, bytes: &[u8]) -> std::io::Result<()> {
     file.sync_all()
 }
 
+/// Path yang belum dipakai: "Surat.pdf" → "Surat (2).pdf" bila sudah ada,
+/// supaya hasil tidak pernah menimpa file user.
+pub fn unique_path(path: &Path) -> PathBuf {
+    if !path.exists() {
+        return path.to_path_buf();
+    }
+    let stem = path.file_stem().map(|s| s.to_string_lossy().into_owned()).unwrap_or_default();
+    let ext = path.extension().map(|e| format!(".{}", e.to_string_lossy())).unwrap_or_default();
+    (2..)
+        .map(|n| path.with_file_name(format!("{stem} ({n}){ext}")))
+        .find(|candidate| !candidate.exists())
+        .expect("rentang angka tak terbatas")
+}
+
 /// File sementara di folder yang sama, supaya `rename` atomik (satu filesystem).
 fn temp_path(path: &Path) -> PathBuf {
     let name = path.file_name().map(|n| n.to_string_lossy()).unwrap_or_default();

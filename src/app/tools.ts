@@ -1,8 +1,9 @@
 import type { ComponentType } from "react";
-import { FileStack, Images, Minimize2, type LucideIcon } from "lucide-react";
+import { FileStack, Images, Minimize2, Scissors, type LucideIcon } from "lucide-react";
 import { MergeView } from "@/features/merge/MergeView";
 import { CompressView } from "@/features/compress/CompressView";
 import { ImageToPdfView } from "@/features/image-to-pdf/ImageToPdfView";
+import { SplitView } from "@/features/split/SplitView";
 
 export type ToolGroup = "organize" | "optimize" | "convert";
 
@@ -18,6 +19,7 @@ export interface Tool {
 // Urutan di sini = urutan di sidebar = urutan shortcut ⌘1..9.
 export const tools: Tool[] = [
   { id: "merge", group: "organize", icon: FileStack, i18nKey: "tools.merge", view: MergeView },
+  { id: "split", group: "organize", icon: Scissors, i18nKey: "tools.split", view: SplitView },
   { id: "compress", group: "optimize", icon: Minimize2, i18nKey: "tools.compress", view: CompressView },
   { id: "image-to-pdf", group: "convert", icon: Images, i18nKey: "tools.imageToPdf", view: ImageToPdfView },
 ];

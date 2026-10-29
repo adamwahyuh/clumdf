@@ -8,11 +8,16 @@ pub mod image_to_pdf;
 pub mod imaging;
 pub mod inspect;
 pub mod merge;
+pub mod organize;
+mod page_tree;
 pub mod progress;
+pub mod split;
 
 pub use compress::{CompressOptions, CompressReport, compress_pdf};
 pub use error::PdfError;
 pub use image_to_pdf::{ImageToPdfOptions, ImageToPdfReport, images_to_pdf};
 pub use inspect::{PdfInfo, inspect};
 pub use merge::{MergeReport, merge_pdfs};
+pub use organize::{PageEdit, PagesReport, edit_pages};
 pub use progress::ProgressReporter;
+pub use split::{SplitMode, SplitReport, split_pdf};

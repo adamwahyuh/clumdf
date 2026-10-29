@@ -17,6 +17,25 @@
       "done": "PDF berhasil digabung",
       "doneDetails": "{{pages}} halaman · {{size}}"
     },
+    "split": {
+      "title": "Pisahkan PDF",
+      "description": "Pecah satu PDF menjadi beberapa file.",
+      "action": "Pisahkan",
+      "formats": "PDF",
+      "modeLabel": "Cara memisahkan",
+      "modes": {
+        "eachPage": "Tiap halaman",
+        "ranges": "Rentang",
+        "everyN": "Tiap N"
+      },
+      "rangesLabel": "Rentang halaman",
+      "rangesHint": "Pisahkan dengan koma. Tiap rentang jadi satu file.",
+      "everyNLabel": "Jumlah halaman per file",
+      "summary": "Menjadi {{count}} file",
+      "running": "Memisahkan PDF…",
+      "done": "PDF berhasil dipisah",
+      "doneDetails": "{{count}} file disimpan di folder pilihanmu"
+    },
     "compress": {
       "title": "Kecilkan PDF",
       "description": "Perkecil ukuran PDF supaya mudah diunggah.",
@@ -114,7 +133,8 @@
     },
     "hasProblems": "Hapus file yang ditandai merah dulu",
     "unsupported": "{{count}} file dilewati karena formatnya tidak didukung",
-    "dropToAdd": "Lepaskan untuk menambahkan"
+    "dropToAdd": "Lepaskan untuk menambahkan",
+    "replace": "Ganti file"
   },
   "result": {
     "revealMac": "Tampilkan di Finder",
@@ -128,7 +148,8 @@
     "io": "{{name}} tidak bisa dibaca atau disimpan",
     "no_input": "Belum ada file untuk diproses",
     "unknown": "Terjadi kesalahan. Coba lagi.",
-    "invalid_image": "{{name}} rusak atau formatnya tidak didukung"
+    "invalid_image": "{{name}} rusak atau formatnya tidak didukung",
+    "invalid_range": "Rentang halaman tidak valid. Contoh: 1-3, 5, 8-10"
   },
   "language": {
     "label": "Bahasa",

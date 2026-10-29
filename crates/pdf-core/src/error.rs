@@ -12,6 +12,9 @@ pub enum PdfError {
     #[error("gambar rusak atau formatnya tidak didukung ({reason}): {path}")]
     InvalidImage { path: PathBuf, reason: String },
 
+    #[error("rentang halaman tidak valid: {reason}")]
+    InvalidRange { reason: String },
+
     #[error("gagal membaca/menulis file ({source}): {path}")]
     Io {
         path: PathBuf,
@@ -29,6 +32,7 @@ impl PdfError {
             PdfError::Encrypted { .. } => "encrypted",
             PdfError::Invalid { .. } => "invalid",
             PdfError::InvalidImage { .. } => "invalid_image",
+            PdfError::InvalidRange { .. } => "invalid_range",
             PdfError::Io { .. } => "io",
             PdfError::NoInput => "no_input",
         }
@@ -40,7 +44,7 @@ impl PdfError {
             | PdfError::Invalid { path, .. }
             | PdfError::InvalidImage { path, .. }
             | PdfError::Io { path, .. } => Some(path),
-            PdfError::NoInput => None,
+            PdfError::InvalidRange { .. } | PdfError::NoInput => None,
         }
     }
 
@@ -50,6 +54,10 @@ impl PdfError {
 
     pub(crate) fn invalid_image(path: &Path, reason: impl ToString) -> Self {
         PdfError::InvalidImage { path: path.to_path_buf(), reason: reason.to_string() }
+    }
+
+    pub(crate) fn invalid_range(reason: impl ToString) -> Self {
+        PdfError::InvalidRange { reason: reason.to_string() }
     }
 
     pub(crate) fn invalid(path: &Path, reason: impl ToString) -> Self {

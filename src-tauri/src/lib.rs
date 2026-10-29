@@ -14,6 +14,8 @@ pub fn run() {
             commands::image_to_pdf::images_to_pdf,
             commands::inspect::inspect_pdf,
             commands::merge::merge_pdfs,
+            commands::organize::edit_pages,
+            commands::split::split_pdf,
         ])
         .run(tauri::generate_context!())
         .expect("gagal menjalankan aplikasi Tauri");
