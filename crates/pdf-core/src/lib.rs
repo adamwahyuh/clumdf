@@ -11,6 +11,7 @@ pub mod merge;
 pub mod metadata;
 pub mod organize;
 mod page_tree;
+pub mod password;
 pub mod progress;
 pub mod split;
 
@@ -21,5 +22,6 @@ pub use inspect::{PdfInfo, inspect};
 pub use merge::{MergeReport, merge_pdfs};
 pub use metadata::{StripReport, strip_metadata};
 pub use organize::{PageEdit, PagesReport, edit_pages};
+pub use password::{PasswordReport, protect_pdf, unlock_pdf};
 pub use progress::ProgressReporter;
 pub use split::{SplitMode, SplitReport, split_pdf};

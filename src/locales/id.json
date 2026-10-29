@@ -164,6 +164,26 @@
       "running": "Membersihkan file {{current}} dari {{total}}…",
       "done": "Metadata berhasil dihapus",
       "doneDetails": "{{count}} file bersih disimpan dengan akhiran -clean"
+    },
+    "protect": {
+      "title": "Kunci PDF",
+      "description": "Pasang password supaya hanya orang tertentu yang bisa membuka.",
+      "action": "Kunci PDF",
+      "formats": "PDF",
+      "passwordHint": "Simpan password ini baik-baik. Tanpa password, file tidak bisa dibuka.",
+      "running": "Mengunci file {{current}} dari {{total}}…",
+      "done": "PDF berhasil dikunci",
+      "doneDetails": "{{count}} file disimpan dengan akhiran -protected"
+    },
+    "unlock": {
+      "title": "Buka Kunci PDF",
+      "description": "Lepas password dari PDF yang password-nya kamu tahu.",
+      "action": "Buka kunci",
+      "formats": "PDF",
+      "passwordHint": "Password yang dipakai untuk membuka file.",
+      "running": "Membuka file {{current}} dari {{total}}…",
+      "done": "Kunci PDF berhasil dilepas",
+      "doneDetails": "{{count}} file disimpan dengan akhiran -unlocked"
     }
   },
   "dropZone": {
@@ -195,13 +215,16 @@
     "again": "Proses lagi"
   },
   "errors": {
-    "encrypted": "{{name}} dikunci dengan password",
+    "encrypted": "{{name}} dikunci dengan password. Buka dulu lewat menu Buka Kunci PDF.",
     "invalid": "{{name}} rusak atau bukan PDF",
     "io": "{{name}} tidak bisa dibaca atau disimpan",
     "no_input": "Belum ada file untuk diproses",
     "unknown": "Terjadi kesalahan. Coba lagi.",
     "invalid_image": "{{name}} rusak atau formatnya tidak didukung",
-    "invalid_range": "Rentang halaman tidak valid. Contoh: 1-3, 5, 8-10"
+    "invalid_range": "Rentang halaman tidak valid. Contoh: 1-3, 5, 8-10",
+    "wrong_password": "Password untuk {{name}} salah",
+    "not_encrypted": "{{name}} tidak dikunci password",
+    "empty_password": "Password belum diisi"
   },
   "language": {
     "label": "Bahasa",
@@ -219,5 +242,12 @@
     "confirm": "Simpan",
     "delete": "Hapus preset",
     "saved": "Preset “{{name}}” disimpan"
+  },
+  "password": {
+    "label": "Password",
+    "confirm": "Ketik ulang password",
+    "mismatch": "Password belum sama",
+    "show": "Tampilkan password",
+    "hide": "Sembunyikan password"
   }
 }

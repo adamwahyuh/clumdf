@@ -5,6 +5,7 @@ edition = "2024"
 description = "Logika PDF Berkas, tanpa ketergantungan ke Tauri"
 
 [dependencies]
+getrandom = "0.3"
 image = "0.25.10"
 lopdf = "0.46.0"
 rayon = "1.12.0"

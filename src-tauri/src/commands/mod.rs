@@ -4,6 +4,7 @@ pub mod inspect;
 pub mod merge;
 pub mod metadata;
 pub mod organize;
+pub mod password;
 pub mod split;
 
 use crate::error::CommandResult;

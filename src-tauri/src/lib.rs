@@ -16,6 +16,8 @@ pub fn run() {
             commands::merge::merge_pdfs,
             commands::metadata::strip_metadata,
             commands::organize::edit_pages,
+            commands::password::protect_pdf,
+            commands::password::unlock_pdf,
             commands::split::split_pdf,
         ])
         .run(tauri::generate_context!())

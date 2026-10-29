@@ -106,3 +106,15 @@ export interface StripReport {
 export function stripMetadata(args: { input: string; output: string }): Promise<StripReport> {
   return invoke("strip_metadata", args);
 }
+
+export interface PasswordReport {
+  outputSize: number;
+}
+
+export function protectPdf(args: { input: string; output: string; password: string }): Promise<PasswordReport> {
+  return invoke("protect_pdf", args);
+}
+
+export function unlockPdf(args: { input: string; output: string; password: string }): Promise<PasswordReport> {
+  return invoke("unlock_pdf", args);
+}

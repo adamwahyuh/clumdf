@@ -12,6 +12,15 @@ pub enum PdfError {
     #[error("gambar rusak atau formatnya tidak didukung ({reason}): {path}")]
     InvalidImage { path: PathBuf, reason: String },
 
+    #[error("password salah: {path}")]
+    WrongPassword { path: PathBuf },
+
+    #[error("PDF ini tidak dikunci: {path}")]
+    NotEncrypted { path: PathBuf },
+
+    #[error("password tidak boleh kosong")]
+    EmptyPassword,
+
     #[error("rentang halaman tidak valid: {reason}")]
     InvalidRange { reason: String },
 
@@ -32,6 +41,9 @@ impl PdfError {
             PdfError::Encrypted { .. } => "encrypted",
             PdfError::Invalid { .. } => "invalid",
             PdfError::InvalidImage { .. } => "invalid_image",
+            PdfError::WrongPassword { .. } => "wrong_password",
+            PdfError::NotEncrypted { .. } => "not_encrypted",
+            PdfError::EmptyPassword => "empty_password",
             PdfError::InvalidRange { .. } => "invalid_range",
             PdfError::Io { .. } => "io",
             PdfError::NoInput => "no_input",
@@ -43,8 +55,10 @@ impl PdfError {
             PdfError::Encrypted { path }
             | PdfError::Invalid { path, .. }
             | PdfError::InvalidImage { path, .. }
+            | PdfError::WrongPassword { path }
+            | PdfError::NotEncrypted { path }
             | PdfError::Io { path, .. } => Some(path),
-            PdfError::InvalidRange { .. } | PdfError::NoInput => None,
+            PdfError::EmptyPassword | PdfError::InvalidRange { .. } | PdfError::NoInput => None,
         }
     }
 

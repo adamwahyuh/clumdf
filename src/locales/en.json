@@ -171,6 +171,28 @@
       "done": "Metadata removed",
       "doneDetails_one": "{{count}} clean file saved with the -clean suffix",
       "doneDetails_other": "{{count}} clean files saved with the -clean suffix"
+    },
+    "protect": {
+      "title": "Protect PDF",
+      "description": "Add a password so only the right people can open it.",
+      "action": "Protect PDF",
+      "formats": "PDF",
+      "passwordHint": "Keep this password safe. Without it, the file can't be opened.",
+      "running": "Protecting file {{current}} of {{total}}…",
+      "done": "PDFs protected",
+      "doneDetails_one": "{{count}} file saved with the -protected suffix",
+      "doneDetails_other": "{{count}} files saved with the -protected suffix"
+    },
+    "unlock": {
+      "title": "Unlock PDF",
+      "description": "Remove the password from a PDF you know the password to.",
+      "action": "Unlock",
+      "formats": "PDF",
+      "passwordHint": "The password used to open the file.",
+      "running": "Unlocking file {{current}} of {{total}}…",
+      "done": "PDFs unlocked",
+      "doneDetails_one": "{{count}} file saved with the -unlocked suffix",
+      "doneDetails_other": "{{count}} files saved with the -unlocked suffix"
     }
   },
   "dropZone": {
@@ -205,13 +227,16 @@
     "again": "Start over"
   },
   "errors": {
-    "encrypted": "{{name}} is password protected",
+    "encrypted": "{{name}} is password protected. Unlock it first with Unlock PDF.",
     "invalid": "{{name}} is damaged or not a PDF",
     "io": "{{name}} couldn't be read or saved",
     "no_input": "No files to process",
     "unknown": "Something went wrong. Please try again.",
     "invalid_image": "{{name}} is damaged or its format isn't supported",
-    "invalid_range": "Invalid page ranges. Example: 1-3, 5, 8-10"
+    "invalid_range": "Invalid page ranges. Example: 1-3, 5, 8-10",
+    "wrong_password": "Wrong password for {{name}}",
+    "not_encrypted": "{{name}} isn't password protected",
+    "empty_password": "Enter a password first"
   },
   "language": {
     "label": "Language",
@@ -229,5 +254,12 @@
     "confirm": "Save",
     "delete": "Delete preset",
     "saved": "Preset “{{name}}” saved"
+  },
+  "password": {
+    "label": "Password",
+    "confirm": "Retype password",
+    "mismatch": "Passwords don't match",
+    "show": "Show password",
+    "hide": "Hide password"
   }
 }
