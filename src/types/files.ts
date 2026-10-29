@@ -11,3 +11,5 @@ export interface QueuedFile {
   /** Kode error dari Rust, mis. "encrypted" */
   errorCode?: string;
 }
+
+export const PDF_EXTENSIONS = ["pdf"] as const;

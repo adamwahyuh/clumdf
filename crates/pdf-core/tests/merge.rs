@@ -2,11 +2,10 @@ mod common;
 
 use std::sync::Mutex;
 
-use lopdf::encryption::{EncryptionState, EncryptionVersion, Permissions};
 use lopdf::{Document, Object};
 use pdf_core::{inspect, merge_pdfs};
 
-use common::{build_pdf, page_labels, temp_dir, write_pdf};
+use common::{build_pdf, encrypt, page_labels, temp_dir, write_pdf};
 
 fn no_progress(_: usize, _: usize) {}
 
@@ -73,17 +72,7 @@ fn merge_rejects_encrypted_input_without_writing_output() {
     let a = write_pdf(&dir, "a", 1);
     let locked = dir.join("locked.pdf");
     let mut doc = build_pdf("locked", 1);
-    let file_id = Object::string_literal(b"berkas-test-id0".to_vec());
-    doc.trailer.set("ID", vec![file_id.clone(), file_id]);
-    let state = EncryptionState::try_from(EncryptionVersion::V2 {
-        document: &doc,
-        owner_password: "owner",
-        user_password: "user",
-        key_length: 128,
-        permissions: Permissions::all(),
-    })
-    .unwrap();
-    doc.encrypt(&state).unwrap();
+    encrypt(&mut doc);
     doc.save(&locked).unwrap();
     let out = dir.join("out.pdf");
 

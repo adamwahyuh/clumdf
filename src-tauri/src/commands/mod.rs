@@ -1,3 +1,4 @@
+pub mod compress;
 pub mod inspect;
 pub mod merge;
 

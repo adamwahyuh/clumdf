@@ -10,6 +10,7 @@ pub fn run() {
         .plugin(tauri_plugin_fs::init())
         .plugin(tauri_plugin_store::Builder::new().build())
         .invoke_handler(tauri::generate_handler![
+            commands::compress::compress_pdf,
             commands::inspect::inspect_pdf,
             commands::merge::merge_pdfs,
         ])

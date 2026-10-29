@@ -21,7 +21,31 @@
       "title": "Kecilkan PDF",
       "description": "Perkecil ukuran PDF supaya mudah diunggah.",
       "action": "Kecilkan",
-      "formats": "PDF"
+      "formats": "PDF",
+      "level": "Tingkat kompresi",
+      "presets": {
+        "light": {
+          "label": "Ringan",
+          "hint": "Kualitas tetap tajam, ukuran turun sedikit."
+        },
+        "balanced": {
+          "label": "Seimbang",
+          "hint": "Pilihan terbaik untuk kebanyakan dokumen."
+        },
+        "max": {
+          "label": "Maksimal",
+          "hint": "Ukuran paling kecil, gambar sedikit buram."
+        }
+      },
+      "grayscale": "Hitam-putih",
+      "grayscaleHint": "Ubah gambar di dalam PDF menjadi hitam-putih.",
+      "summary": "{{count}} file · {{size}}",
+      "running": "Mengecilkan file {{current}} dari {{total}}…",
+      "done": "PDF berhasil dikecilkan",
+      "allOptimal": "File ini sudah optimal",
+      "optimal": "Sudah optimal, file asli dipertahankan",
+      "becomes": "menjadi",
+      "saved": "hemat {{percent}}%"
     },
     "imageToPdf": {
       "title": "Gambar ke PDF",

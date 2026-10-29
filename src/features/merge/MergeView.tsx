@@ -12,7 +12,8 @@ import { SortableFileGrid } from "@/components/files/SortableFileGrid";
 import { useFileDrop } from "@/hooks/use-file-drop";
 import { formatBytes } from "@/lib/format";
 import { pickFiles } from "@/lib/tauri/dialogs";
-import { PDF_EXTENSIONS, useMerge, useMergeQueue } from "./use-merge";
+import { PDF_EXTENSIONS } from "@/types/files";
+import { useMerge, useMergeQueue } from "./use-merge";
 
 export function MergeView() {
   const { t, i18n } = useTranslation();

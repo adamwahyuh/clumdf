@@ -2,17 +2,12 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { toast } from "sonner";
 import { useJobProgress } from "@/hooks/use-job-progress";
-import { inspectPdf, mergePdfs, type MergeReport } from "@/lib/tauri/commands";
+import { mergePdfs, type MergeReport } from "@/lib/tauri/commands";
 import { pickSavePath } from "@/lib/tauri/dialogs";
 import { errorMessage, toAppError } from "@/lib/tauri/errors";
-import { createFileQueue } from "@/stores/create-file-queue";
+import { createFileQueue, inspectPdfFile } from "@/stores/create-file-queue";
 
-export const PDF_EXTENSIONS = ["pdf"] as const;
-
-export const useMergeQueue = createFileQueue(async (path) => {
-  const info = await inspectPdf(path);
-  return { pageCount: info.pageCount, size: info.fileSize };
-});
+export const useMergeQueue = createFileQueue(inspectPdfFile);
 
 export function useMerge() {
   const { t } = useTranslation();

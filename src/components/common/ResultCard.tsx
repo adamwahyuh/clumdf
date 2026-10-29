@@ -19,7 +19,7 @@ export function ResultCard({ title, details, outputPath, onReset }: ResultCardPr
   const revealLabel = t(isMac ? "result.revealMac" : isWindows ? "result.revealWindows" : "result.revealOther");
 
   return (
-    <div className="flex h-full items-center justify-center animate-in fade-in zoom-in-95 duration-200">
+    <div className="flex min-h-full items-center justify-center py-4 animate-in fade-in zoom-in-95 duration-200">
       <div className="flex w-full max-w-md flex-col items-center gap-4 rounded-xl bg-card p-8 text-center shadow-card">
         <CircleCheck className="size-12 text-success" strokeWidth={1.5} />
         <div className="flex flex-col gap-1">

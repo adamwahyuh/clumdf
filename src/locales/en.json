@@ -21,7 +21,32 @@
       "title": "Compress PDF",
       "description": "Shrink PDFs so they're easy to upload.",
       "action": "Compress",
-      "formats": "PDF"
+      "formats": "PDF",
+      "level": "Compression level",
+      "presets": {
+        "light": {
+          "label": "Light",
+          "hint": "Stays sharp, shrinks a little."
+        },
+        "balanced": {
+          "label": "Balanced",
+          "hint": "Best choice for most documents."
+        },
+        "max": {
+          "label": "Maximum",
+          "hint": "Smallest size, images get a bit soft."
+        }
+      },
+      "grayscale": "Black & white",
+      "grayscaleHint": "Turn images inside the PDF black & white.",
+      "summary_one": "{{count}} file · {{size}}",
+      "summary_other": "{{count}} files · {{size}}",
+      "running": "Compressing file {{current}} of {{total}}…",
+      "done": "PDFs compressed",
+      "allOptimal": "Already optimal",
+      "optimal": "Already optimal, original kept",
+      "becomes": "becomes",
+      "saved": "{{percent}}% smaller"
     },
     "imageToPdf": {
       "title": "Images to PDF",

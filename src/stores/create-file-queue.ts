@@ -1,11 +1,18 @@
 import { create } from "zustand";
 import { arrayMove } from "@dnd-kit/sortable";
 import { fileName } from "@/lib/format";
+import { inspectPdf } from "@/lib/tauri/commands";
 import { toAppError } from "@/lib/tauri/errors";
 import type { QueuedFile } from "@/types/files";
 
 /** Ambil info file dari Rust; error-nya menandai file sebagai bermasalah. */
 export type InspectFile = (path: string) => Promise<Partial<QueuedFile>>;
+
+/** Inspeksi PDF: jumlah halaman + ukuran, atau tandai terkunci/rusak. */
+export const inspectPdfFile: InspectFile = async (path) => {
+  const info = await inspectPdf(path);
+  return { pageCount: info.pageCount, size: info.fileSize };
+};
 
 export interface FileQueue {
   files: QueuedFile[];

@@ -16,3 +16,8 @@ export function formatBytes(bytes: number, locale: string): string {
 export function fileName(path: string): string {
   return path.split(/[\\/]/).pop() ?? path;
 }
+
+/** "/a/Surat.pdf" + "-compressed" → "/a/Surat-compressed.pdf" */
+export function withSuffix(path: string, suffix: string): string {
+  return path.replace(/(\.[^.\\/]+)?$/, (ext) => `${suffix}${ext}`);
+}
