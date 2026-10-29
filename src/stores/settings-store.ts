@@ -8,9 +8,13 @@ interface CompressSettings {
   grayscale: boolean;
 }
 
+export type Language = "id" | "en";
+
 interface SettingsState {
+  language: Language;
   compress: CompressSettings;
   imageToPdf: ImageToPdfOptions;
+  setLanguage: (language: Language) => void;
   setCompress: (patch: Partial<CompressSettings>) => void;
   setImageToPdf: (patch: Partial<ImageToPdfOptions>) => void;
 }
@@ -19,8 +23,10 @@ interface SettingsState {
 export const useSettings = create<SettingsState>()(
   persist(
     (set) => ({
+      language: "id",
       compress: { preset: "balanced", grayscale: false },
       imageToPdf: { pageSize: "a4", orientation: "auto", margin: "none", quality: "medium" },
+      setLanguage: (language) => set({ language }),
       setCompress: (patch) => set((s) => ({ compress: { ...s.compress, ...patch } })),
       setImageToPdf: (patch) => set((s) => ({ imageToPdf: { ...s.imageToPdf, ...patch } })),
     }),

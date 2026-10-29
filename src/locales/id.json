@@ -129,5 +129,10 @@
     "no_input": "Belum ada file untuk diproses",
     "unknown": "Terjadi kesalahan. Coba lagi.",
     "invalid_image": "{{name}} rusak atau formatnya tidak didukung"
+  },
+  "language": {
+    "label": "Bahasa",
+    "id": "Indonesia",
+    "en": "English"
   }
 }

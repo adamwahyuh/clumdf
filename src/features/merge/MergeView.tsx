@@ -9,6 +9,7 @@ import { DropOverlay } from "@/components/files/DropOverlay";
 import { DropZone } from "@/components/files/DropZone";
 import { SortableFileGrid } from "@/components/files/SortableFileGrid";
 import { useFileInput } from "@/hooks/use-file-input";
+import { useHotkey } from "@/hooks/use-hotkey";
 import { formatBytes } from "@/lib/format";
 import { PDF_EXTENSIONS } from "@/types/files";
 import { useMerge, useMergeQueue } from "./use-merge";
@@ -24,6 +25,8 @@ export function MergeView() {
   }
 
   const { dragging, browse } = useFileInput(PDF_EXTENSIONS, "PDF", addFiles);
+  useHotkey(["o"], browse, !running);
+  useHotkey(["Enter"], merge, !running && !result);
 
   const totalPages = files.reduce((sum, f) => sum + (f.pageCount ?? 0), 0);
   const summary =

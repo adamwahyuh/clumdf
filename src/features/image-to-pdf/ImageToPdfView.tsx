@@ -9,6 +9,7 @@ import { DropOverlay } from "@/components/files/DropOverlay";
 import { DropZone } from "@/components/files/DropZone";
 import { SortableFileGrid } from "@/components/files/SortableFileGrid";
 import { useFileInput } from "@/hooks/use-file-input";
+import { useHotkey } from "@/hooks/use-hotkey";
 import { formatBytes } from "@/lib/format";
 import { IMAGE_EXTENSIONS } from "@/types/files";
 import { ImageToPdfSettings } from "./ImageToPdfSettings";
@@ -25,6 +26,8 @@ export function ImageToPdfView() {
   }
 
   const { dragging, browse } = useFileInput(IMAGE_EXTENSIONS, t("tools.imageToPdf.filterName"), addFiles);
+  useHotkey(["o"], browse, !running);
+  useHotkey(["Enter"], create, !running && !result);
 
   return (
     <>

@@ -134,5 +134,10 @@
     "no_input": "No files to process",
     "unknown": "Something went wrong. Please try again.",
     "invalid_image": "{{name}} is damaged or its format isn't supported"
+  },
+  "language": {
+    "label": "Language",
+    "id": "Indonesia",
+    "en": "English"
   }
 }

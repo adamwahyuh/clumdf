@@ -42,6 +42,15 @@ export function FileCard({ file, index, kind, onRemove }: FileCardProps) {
       style={style}
       {...attributes}
       {...listeners}
+      // Delete/Backspace pada kartu yang difokus menghapusnya; tombol lain tetap untuk dnd-kit
+      onKeyDown={(e) => {
+        if (e.key === "Delete" || e.key === "Backspace") {
+          e.preventDefault();
+          onRemove(file.id);
+        } else {
+          listeners?.onKeyDown?.(e);
+        }
+      }}
       aria-label={file.name}
       className={cn(
         "group relative flex cursor-grab flex-col gap-2 rounded-xl bg-card p-2 shadow-card transition-shadow duration-200 ease-out",

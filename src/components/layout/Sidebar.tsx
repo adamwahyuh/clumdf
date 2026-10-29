@@ -2,6 +2,7 @@ import { useTranslation } from "react-i18next";
 import { toolGroups, tools } from "@/app/tools";
 import { isMac } from "@/lib/platform";
 import { cn } from "@/lib/utils";
+import { LanguageSwitch } from "./LanguageSwitch";
 import { SidebarItem } from "./SidebarItem";
 
 interface SidebarProps {
@@ -36,6 +37,9 @@ export function Sidebar({ activeId, onSelect }: SidebarProps) {
           </div>
         ))}
       </nav>
+      <div className="mt-auto p-3">
+        <LanguageSwitch />
+      </div>
     </aside>
   );
 }
