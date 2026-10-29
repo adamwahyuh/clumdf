@@ -1,0 +1,11 @@
+[workspace]
+resolver = "2"
+members = ["crates/pdf-core", "src-tauri"]
+
+# Profil release untuk installer kecil (https://tauri.app/concept/size/)
+[profile.release]
+codegen-units = 1
+lto = true
+opt-level = 3
+panic = "abort"
+strip = true
