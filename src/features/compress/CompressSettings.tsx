@@ -1,20 +1,37 @@
 import { useTranslation } from "react-i18next";
+import { toast } from "sonner";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Switch } from "@/components/ui/switch";
+import { PresetPicker } from "@/components/common/PresetPicker";
 import { SegmentedControl } from "@/components/common/SegmentedControl";
 import { SettingRow } from "@/components/common/SettingRow";
 import { SettingsPanel } from "@/components/common/SettingsPanel";
 import { useSettings } from "@/stores/settings-store";
-import { compressPresetOrder, compressTargetOrder, type CompressTarget } from "./presets";
+import { compressBuiltInPresets, compressPresetOrder, compressTargetOrder, type CompressTarget } from "./presets";
 
 export function CompressSettings() {
   const { t } = useTranslation();
-  const { compress, setCompress } = useSettings();
+  const { compress, setCompress, userPresets, addUserPreset, removeUserPreset } = useSettings();
   const hasTarget = compress.target !== "none";
 
   return (
     <SettingsPanel>
+      <PresetPicker
+        builtIn={compressBuiltInPresets.map((p) => ({
+          id: `builtin:${p.id}`,
+          label: t(`tools.compress.builtInPresets.${p.id}`),
+          values: p.values,
+        }))}
+        user={userPresets.compress.map((p) => ({ id: p.id, label: p.name, values: p.values }))}
+        current={compress}
+        onApply={setCompress}
+        onSave={(name) => {
+          addUserPreset("compress", name, compress);
+          toast.success(t("presets.saved", { name }));
+        }}
+        onDelete={(id) => removeUserPreset("compress", id)}
+      />
       <SettingRow
         label={t("tools.compress.level")}
         hint={t(hasTarget ? "tools.compress.levelAuto" : `tools.compress.presets.${compress.preset}.hint`)}

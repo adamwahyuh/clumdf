@@ -3,7 +3,7 @@ import { persist } from "zustand/middleware";
 import type { CompressPreset, CompressTarget } from "@/features/compress/presets";
 import type { ImageToPdfOptions } from "@/lib/tauri/commands";
 
-interface CompressSettings {
+export interface CompressSettings {
   preset: CompressPreset;
   grayscale: boolean;
   target: CompressTarget;
@@ -21,15 +21,29 @@ interface SplitSettings {
   n: number;
 }
 
+export interface UserPreset<T> {
+  id: string;
+  name: string;
+  values: T;
+}
+
+interface UserPresets {
+  compress: UserPreset<CompressSettings>[];
+  imageToPdf: UserPreset<ImageToPdfOptions>[];
+}
+
 interface SettingsState {
   language: Language;
   compress: CompressSettings;
   imageToPdf: ImageToPdfOptions;
   split: SplitSettings;
+  userPresets: UserPresets;
   setLanguage: (language: Language) => void;
   setCompress: (patch: Partial<CompressSettings>) => void;
   setImageToPdf: (patch: Partial<ImageToPdfOptions>) => void;
   setSplit: (patch: Partial<SplitSettings>) => void;
+  addUserPreset: <K extends keyof UserPresets>(tool: K, name: string, values: UserPresets[K][number]["values"]) => void;
+  removeUserPreset: (tool: keyof UserPresets, id: string) => void;
 }
 
 /** Pengaturan terakhir yang diingat antar sesi (localStorage webview). */
@@ -40,10 +54,19 @@ export const useSettings = create<SettingsState>()(
       compress: { preset: "balanced", grayscale: false, target: "none", customMb: 1 },
       imageToPdf: { pageSize: "a4", orientation: "auto", margin: "none", quality: "medium" },
       split: { mode: "eachPage", n: 2 },
+      userPresets: { compress: [], imageToPdf: [] },
       setLanguage: (language) => set({ language }),
       setCompress: (patch) => set((s) => ({ compress: { ...s.compress, ...patch } })),
       setImageToPdf: (patch) => set((s) => ({ imageToPdf: { ...s.imageToPdf, ...patch } })),
       setSplit: (patch) => set((s) => ({ split: { ...s.split, ...patch } })),
+      addUserPreset: (tool, name, values) =>
+        set((s) => ({
+          userPresets: { ...s.userPresets, [tool]: [...s.userPresets[tool], { id: crypto.randomUUID(), name, values }] },
+        })),
+      removeUserPreset: (tool, id) =>
+        set((s) => ({
+          userPresets: { ...s.userPresets, [tool]: s.userPresets[tool].filter((p) => p.id !== id) },
+        })),
     }),
     {
       name: "berkas-settings",
@@ -56,6 +79,7 @@ export const useSettings = create<SettingsState>()(
           compress: { ...current.compress, ...s.compress },
           imageToPdf: { ...current.imageToPdf, ...s.imageToPdf },
           split: { ...current.split, ...s.split },
+          userPresets: { ...current.userPresets, ...s.userPresets },
         };
       },
     },

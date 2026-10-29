@@ -100,7 +100,12 @@
       },
       "customLabel": "Maximum size (MB)",
       "levelAuto": "Set automatically to fit the target.",
-      "targetMissed": "Didn't fit the target. This is the smallest possible result."
+      "targetMissed": "Didn't fit the target. This is the smallest possible result.",
+      "builtInPresets": {
+        "lamaran": "Job Application (< 2 MB)",
+        "formulir": "Form Upload (< 500 KB)",
+        "scanHitamPutih": "Black & White Scan"
+      }
     },
     "imageToPdf": {
       "title": "Images to PDF",
@@ -150,6 +155,12 @@
         "high": "Sharp, good for printing.",
         "medium": "Right for most uses.",
         "low": "Smallest file, good for uploads."
+      },
+      "builtInPresets": {
+        "ktp": "ID Card Scan",
+        "lamaran": "Job Application",
+        "folio": "F4 / Folio Document",
+        "foto": "Photos as they are"
       }
     }
   },
@@ -195,5 +206,17 @@
     "label": "Language",
     "id": "Indonesia",
     "en": "English"
+  },
+  "presets": {
+    "label": "Preset",
+    "builtIn": "Built-in",
+    "mine": "My presets",
+    "custom": "Custom settings",
+    "save": "Save as preset",
+    "nameLabel": "Preset name",
+    "namePlaceholder": "e.g. Scholarship Docs",
+    "confirm": "Save",
+    "delete": "Delete preset",
+    "saved": "Preset “{{name}}” saved"
   }
 }

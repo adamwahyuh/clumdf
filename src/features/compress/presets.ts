@@ -1,3 +1,5 @@
+import type { CompressSettings } from "@/stores/settings-store";
+
 export type CompressPreset = "light" | "balanced" | "max";
 
 export const compressPresets: Record<CompressPreset, { maxDimension: number; jpegQuality: number }> = {
@@ -26,3 +28,10 @@ export function resolveTarget(target: CompressTarget, customMb: number): number 
   if (target === "custom") return Math.round(Math.max(0.05, customMb) * 1_000_000);
   return targetBytes[target];
 }
+
+/** Preset berkas bawaan; label di i18n `tools.compress.builtInPresets.<id>`. */
+export const compressBuiltInPresets: { id: string; values: Partial<CompressSettings> }[] = [
+  { id: "lamaran", values: { target: "2m", grayscale: false } },
+  { id: "formulir", values: { target: "500k", grayscale: false } },
+  { id: "scanHitamPutih", values: { target: "none", preset: "max", grayscale: true } },
+];

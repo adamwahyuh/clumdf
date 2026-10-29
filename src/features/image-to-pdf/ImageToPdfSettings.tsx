@@ -1,21 +1,38 @@
 import { useTranslation } from "react-i18next";
+import { toast } from "sonner";
 import { ChevronRight } from "lucide-react";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { PresetPicker } from "@/components/common/PresetPicker";
 import { SegmentedControl } from "@/components/common/SegmentedControl";
 import { SettingRow } from "@/components/common/SettingRow";
 import { SettingsPanel } from "@/components/common/SettingsPanel";
 import type { PageSize } from "@/lib/tauri/commands";
 import { useSettings } from "@/stores/settings-store";
-import { margins, orientations, pageSizes, qualities } from "./options";
+import { imageToPdfBuiltInPresets, margins, orientations, pageSizes, qualities } from "./options";
 
 export function ImageToPdfSettings() {
   const { t } = useTranslation();
-  const { imageToPdf: o, setImageToPdf } = useSettings();
+  const { imageToPdf: o, setImageToPdf, userPresets, addUserPreset, removeUserPreset } = useSettings();
   const k = (group: string, value: string) => t(`tools.imageToPdf.${group}.${value}`);
   const options = <T extends string>(group: string, values: T[]) => values.map((value) => ({ value, label: k(group, value) }));
 
   return (
     <SettingsPanel>
+      <PresetPicker
+        builtIn={imageToPdfBuiltInPresets.map((p) => ({
+          id: `builtin:${p.id}`,
+          label: t(`tools.imageToPdf.builtInPresets.${p.id}`),
+          values: p.values,
+        }))}
+        user={userPresets.imageToPdf.map((p) => ({ id: p.id, label: p.name, values: p.values }))}
+        current={o}
+        onApply={setImageToPdf}
+        onSave={(name) => {
+          addUserPreset("imageToPdf", name, o);
+          toast.success(t("presets.saved", { name }));
+        }}
+        onDelete={(id) => removeUserPreset("imageToPdf", id)}
+      />
       <SettingRow label={t("tools.imageToPdf.pageSizeLabel")} htmlFor="img-page-size">
         <Select value={o.pageSize} onValueChange={(pageSize) => setImageToPdf({ pageSize: pageSize as PageSize })}>
           <SelectTrigger id="img-page-size" className="w-full">

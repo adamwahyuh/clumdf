@@ -95,7 +95,12 @@
       },
       "customLabel": "Ukuran maksimal (MB)",
       "levelAuto": "Diatur otomatis supaya file muat di target.",
-      "targetMissed": "Belum muat di target. Ini hasil terkecil yang bisa dicapai."
+      "targetMissed": "Belum muat di target. Ini hasil terkecil yang bisa dicapai.",
+      "builtInPresets": {
+        "lamaran": "Berkas Lamaran (< 2 MB)",
+        "formulir": "Unggah Formulir (< 500 KB)",
+        "scanHitamPutih": "Scan Hitam-Putih"
+      }
     },
     "imageToPdf": {
       "title": "Gambar ke PDF",
@@ -143,6 +148,12 @@
         "high": "Tajam, cocok untuk dicetak.",
         "medium": "Pas untuk kebanyakan keperluan.",
         "low": "File paling kecil, cocok untuk diunggah."
+      },
+      "builtInPresets": {
+        "ktp": "Scan KTP",
+        "lamaran": "Berkas Lamaran",
+        "folio": "Dokumen F4 / Folio",
+        "foto": "Foto apa adanya"
       }
     }
   },
@@ -186,5 +197,17 @@
     "label": "Bahasa",
     "id": "Indonesia",
     "en": "English"
+  },
+  "presets": {
+    "label": "Preset",
+    "builtIn": "Bawaan",
+    "mine": "Buatan saya",
+    "custom": "Pengaturan sendiri",
+    "save": "Simpan sebagai preset",
+    "nameLabel": "Nama preset",
+    "namePlaceholder": "mis. Berkas Beasiswa",
+    "confirm": "Simpan",
+    "delete": "Hapus preset",
+    "saved": "Preset “{{name}}” disimpan"
   }
 }
