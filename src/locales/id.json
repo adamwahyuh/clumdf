@@ -36,6 +36,26 @@
       "done": "PDF berhasil dipisah",
       "doneDetails": "{{count}} file disimpan di folder pilihanmu"
     },
+    "organize": {
+      "title": "Atur Halaman",
+      "description": "Susun ulang, putar, hapus, atau ambil halaman tertentu.",
+      "action": "Simpan PDF",
+      "formats": "PDF",
+      "extract": "Ambil halaman terpilih",
+      "suffix": "-diatur",
+      "extractSuffix": "-terpilih",
+      "pageLabel": "Hal. {{page}}",
+      "selectAll": "Pilih semua",
+      "selectNone": "Batal pilih",
+      "rotateLeft": "Putar kiri",
+      "rotateRight": "Putar kanan",
+      "delete": "Hapus",
+      "hint": "Klik untuk memilih, tarik untuk memindah",
+      "summary": "{{count}} halaman · {{selected}} dipilih",
+      "running": "Menyimpan PDF…",
+      "done": "PDF berhasil disimpan",
+      "doneDetails": "{{count}} halaman · {{size}}"
+    },
     "compress": {
       "title": "Kecilkan PDF",
       "description": "Perkecil ukuran PDF supaya mudah diunggah.",

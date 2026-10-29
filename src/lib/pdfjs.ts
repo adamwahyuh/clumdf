@@ -1,27 +1,37 @@
-import { GlobalWorkerOptions, getDocument } from "pdfjs-dist";
+import { GlobalWorkerOptions, getDocument, type PDFDocumentProxy } from "pdfjs-dist";
 import workerUrl from "pdfjs-dist/build/pdf.worker.min.mjs?url";
 import { convertFileSrc } from "@tauri-apps/api/core";
 
 GlobalWorkerOptions.workerSrc = workerUrl;
 
-/** Render halaman 1 menjadi object URL PNG. Pemanggil wajib `URL.revokeObjectURL`. */
-export async function renderFirstPage(path: string, width: number): Promise<string> {
+/** Buka PDF lokal untuk dirender; panggil `close()` setelah selesai. */
+export async function openPdf(path: string): Promise<{ doc: PDFDocumentProxy; close: () => Promise<void> }> {
   // shortcut: seluruh file dibaca ke memori hanya untuk thumbnail; pakai range request bila PDF besar terasa lambat
   const data = await fetch(convertFileSrc(path)).then((res) => res.arrayBuffer());
   const task = getDocument({ data });
-  const doc = await task.promise;
+  return { doc: await task.promise, close: () => task.destroy() };
+}
+
+/** Render satu halaman (mulai 1) menjadi object URL PNG. Pemanggil wajib `URL.revokeObjectURL`. */
+export async function renderPage(doc: PDFDocumentProxy, pageNumber: number, width: number): Promise<string> {
+  const page = await doc.getPage(pageNumber);
+  const viewport = page.getViewport({ scale: width / page.getViewport({ scale: 1 }).width });
+  const canvas = document.createElement("canvas");
+  canvas.width = Math.ceil(viewport.width);
+  canvas.height = Math.ceil(viewport.height);
+  await page.render({ canvas, viewport }).promise;
+  const blob = await new Promise<Blob>((resolve, reject) =>
+    canvas.toBlob((b) => (b ? resolve(b) : reject(new Error("canvas kosong"))), "image/png"),
+  );
+  return URL.createObjectURL(blob);
+}
+
+/** Render halaman 1 menjadi object URL PNG. Pemanggil wajib `URL.revokeObjectURL`. */
+export async function renderFirstPage(path: string, width: number): Promise<string> {
+  const pdf = await openPdf(path);
   try {
-    const page = await doc.getPage(1);
-    const viewport = page.getViewport({ scale: width / page.getViewport({ scale: 1 }).width });
-    const canvas = document.createElement("canvas");
-    canvas.width = Math.ceil(viewport.width);
-    canvas.height = Math.ceil(viewport.height);
-    await page.render({ canvas, viewport }).promise;
-    const blob = await new Promise<Blob>((resolve, reject) =>
-      canvas.toBlob((b) => (b ? resolve(b) : reject(new Error("canvas kosong"))), "image/png"),
-    );
-    return URL.createObjectURL(blob);
+    return await renderPage(pdf.doc, 1, width);
   } finally {
-    await task.destroy();
+    await pdf.close();
   }
 }

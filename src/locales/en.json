@@ -38,6 +38,28 @@
       "doneDetails_one": "{{count}} file saved to your folder",
       "doneDetails_other": "{{count}} files saved to your folder"
     },
+    "organize": {
+      "title": "Organize Pages",
+      "description": "Reorder, rotate, delete, or pick out pages.",
+      "action": "Save PDF",
+      "formats": "PDF",
+      "extract": "Save selected pages",
+      "suffix": "-organized",
+      "extractSuffix": "-selected",
+      "pageLabel": "Page {{page}}",
+      "selectAll": "Select all",
+      "selectNone": "Deselect all",
+      "rotateLeft": "Rotate left",
+      "rotateRight": "Rotate right",
+      "delete": "Delete",
+      "hint": "Click to select, drag to move",
+      "summary_one": "{{count}} page · {{selected}} selected",
+      "summary_other": "{{count}} pages · {{selected}} selected",
+      "running": "Saving PDF…",
+      "done": "PDF saved",
+      "doneDetails_one": "{{count}} page · {{size}}",
+      "doneDetails_other": "{{count}} pages · {{size}}"
+    },
     "compress": {
       "title": "Compress PDF",
       "description": "Shrink PDFs so they're easy to upload.",
