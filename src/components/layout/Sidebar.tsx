@@ -1,8 +1,7 @@
 import { useTranslation } from "react-i18next";
-import version from "../../../VERSION?raw";
 import { toolGroups, tools } from "@/app/tools";
-import { LanguageSwitch } from "./LanguageSwitch";
 import { SidebarBrand } from "./SidebarBrand";
+import { SidebarFooter } from "./SidebarFooter";
 import { SidebarItem } from "./SidebarItem";
 
 interface SidebarProps {
@@ -36,10 +35,7 @@ export function Sidebar({ activeId, onSelect }: SidebarProps) {
           </div>
         ))}
       </nav>
-      <div className="mt-auto flex flex-col gap-2 p-3">
-        <p className="px-1 text-[11px] text-muted-foreground tabular-nums">{version.trim()}</p>
-        <LanguageSwitch />
-      </div>
+      <SidebarFooter />
     </aside>
   );
 }

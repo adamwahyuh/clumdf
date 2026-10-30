@@ -12,4 +12,6 @@ mkdir -p "$DEST"
 for lang in ind eng; do
   curl -fsSL -o "$DEST/$lang.traineddata" "https://github.com/tesseract-ocr/tessdata_fast/raw/$REV/$lang.traineddata"
 done
+# Apache 2.0 mewajibkan teks lisensi ikut disebarkan bersama datanya
+curl -fsSL -o "$DEST/LICENSE" "https://github.com/tesseract-ocr/tessdata_fast/raw/$REV/LICENSE"
 echo "Data bahasa OCR ($REV) siap di $DEST"

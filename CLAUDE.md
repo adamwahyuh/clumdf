@@ -480,6 +480,10 @@ npm run build
 # Build installer untuk OS saat ini
 npm run tauri build
 
+# Rilis: GitHub Actions membangun installer macOS/Windows/Linux dan membuat Release
+# (nama file Clumdf_<versi>.<ext>; versi diambil dari tag, wajib vX.Y.Z)
+git tag v1.0.0 && git push origin v1.0.0
+
 # Tambah komponen shadcn
 npx shadcn@latest add button select switch progress tooltip sonner
 ```

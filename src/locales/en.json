@@ -523,5 +523,9 @@
     "count_one": "{{count}} file",
     "count_other": "{{count}} files",
     "unsupported": "Clumdf can't process this kind of file yet."
+  },
+  "about": {
+    "copyright": "© {{year}} Adam Hariyadi",
+    "license": "MIT License"
   }
 }

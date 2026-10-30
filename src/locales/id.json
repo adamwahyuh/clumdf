@@ -501,5 +501,9 @@
     "title": "Mau diapakan file ini?",
     "count": "{{count}} file",
     "unsupported": "Clumdf belum bisa memproses jenis file ini."
+  },
+  "about": {
+    "copyright": "© {{year}} Adam Hariyadi",
+    "license": "Lisensi MIT"
   }
 }
