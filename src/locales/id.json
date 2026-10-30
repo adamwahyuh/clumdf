@@ -155,11 +155,14 @@
         "ktp": "Scan KTP",
         "lamaran": "Berkas Lamaran",
         "folio": "Dokumen F4 / Folio",
-        "foto": "Foto apa adanya"
+        "foto": "Foto apa adanya",
+        "scanHp": "Foto dokumen dari HP"
       },
       "compressAfter": "Kecilkan hasilnya",
       "compressNone": "Tidak dikecilkan",
-      "compressAfterHint": "PDF langsung dikecilkan sampai muat di bawah ukuran ini."
+      "compressAfterHint": "PDF langsung dikecilkan sampai muat di bawah ukuran ini.",
+      "scan": "Mode scan dokumen",
+      "scanHint": "Untuk foto dokumen dari HP: dipotong ke kertas, diluruskan, dan dibuat hitam-putih bersih."
     },
     "metadata": {
       "title": "Hapus Metadata",

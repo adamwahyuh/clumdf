@@ -56,6 +56,8 @@ export interface ImageToPdfOptions {
   orientation: PageOrientation;
   margin: Margin;
   quality: ImageQuality;
+  /** Mode scan dokumen: potong ke kertas, luruskan, hitam-putih bersih */
+  scan: boolean;
   /** Workflow berantai: langsung kecilkan PDF hasil */
   compress?: CompressOptions | null;
 }

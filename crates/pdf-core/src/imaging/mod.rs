@@ -2,4 +2,5 @@
 
 pub mod encode;
 pub mod load;
+pub mod scan;
 pub mod transform;

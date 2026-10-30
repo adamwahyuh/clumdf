@@ -2,6 +2,7 @@ import { useTranslation } from "react-i18next";
 import { toast } from "sonner";
 import { ChevronRight } from "lucide-react";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Switch } from "@/components/ui/switch";
 import { PresetPicker } from "@/components/common/PresetPicker";
 import { SegmentedControl } from "@/components/common/SegmentedControl";
 import { SettingRow } from "@/components/common/SettingRow";
@@ -59,6 +60,9 @@ export function ImageToPdfSettings() {
           options={options("orientation", orientations)}
           disabled={o.pageSize === "fit"}
         />
+      </SettingRow>
+      <SettingRow label={t("tools.imageToPdf.scan")} htmlFor="img-scan" hint={t("tools.imageToPdf.scanHint")} inline>
+        <Switch id="img-scan" checked={o.scan} onCheckedChange={(scan) => setImageToPdf({ scan })} />
       </SettingRow>
       <SettingRow label={t("tools.imageToPdf.compressAfter")} htmlFor="img-compress" hint={t("tools.imageToPdf.compressAfterHint")}>
         <Select value={o.compressAfter} onValueChange={(v) => setImageToPdf({ compressAfter: v as CompressTarget })}>

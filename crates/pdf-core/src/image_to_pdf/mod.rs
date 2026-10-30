@@ -43,7 +43,7 @@ pub fn images_to_pdf(
     let embedded: Vec<_> = inputs
         .par_iter()
         .map(|path| {
-            let result = embed::embed(path, options.quality);
+            let result = embed::embed(path, options.quality, options.scan);
             reporter.report(done.fetch_add(1, Ordering::Relaxed) + 1, total);
             result
         })

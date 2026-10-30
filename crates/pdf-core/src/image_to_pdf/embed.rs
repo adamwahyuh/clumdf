@@ -1,20 +1,23 @@
 use std::path::Path;
 
-use image::ImageFormat;
+use image::{DynamicImage, ImageFormat};
 use lopdf::Stream;
 
 use super::options::ImageQuality;
 use crate::error::PdfError;
 use crate::imaging::encode::{self, Encoded};
-use crate::imaging::{load, transform};
+use crate::imaging::{load, scan, transform};
 
 /// Gambar → image XObject, plus ukuran (px, setelah rotasi EXIF) untuk layout.
-pub fn embed(path: &Path, quality: ImageQuality) -> Result<(Stream, (u32, u32)), PdfError> {
-    let loaded = load::load(path)?;
+pub fn embed(path: &Path, quality: ImageQuality, scan_mode: bool) -> Result<(Stream, (u32, u32)), PdfError> {
+    let mut loaded = load::load(path)?;
+    if scan_mode {
+        loaded.image = DynamicImage::ImageLuma8(scan::clean_document(&loaded.image));
+    }
     let size = (loaded.image.width(), loaded.image.height());
 
     // Kualitas asli + JPEG tanpa rotasi: pakai byte JPEG apa adanya, tanpa re-encode
-    if quality == ImageQuality::Original && loaded.format == ImageFormat::Jpeg && !loaded.reoriented {
+    if quality == ImageQuality::Original && loaded.format == ImageFormat::Jpeg && !loaded.reoriented && !scan_mode {
         let bytes = std::fs::read(path).map_err(|e| PdfError::io(path, e))?;
         if let Some(components @ (1 | 3)) = jpeg_components(&bytes) {
             let encoded = Encoded { bytes, width: size.0, height: size.1, gray: components == 1, jpeg: true };

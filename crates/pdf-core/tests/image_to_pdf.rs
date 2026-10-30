@@ -79,7 +79,7 @@ fn f4_folio_is_215_by_330_mm() {
 // ---------- images_to_pdf ----------
 
 fn options(page_size: PageSize, quality: ImageQuality) -> ImageToPdfOptions {
-    ImageToPdfOptions { page_size, orientation: PageOrientation::Auto, margin: Margin::None, quality, compress: None }
+    ImageToPdfOptions { page_size, orientation: PageOrientation::Auto, margin: Margin::None, quality, scan: false, compress: None }
 }
 
 fn save_jpeg(path: &Path, img: &RgbImage, exif: Option<Vec<u8>>) {
@@ -234,4 +234,27 @@ fn chained_compress_brings_result_under_target() {
     assert!(report.output_size <= target, "{report:?}");
     assert!(report.output_size < std::fs::metadata(&plain).unwrap().len());
     assert_eq!(report.output_size, std::fs::metadata(&chained).unwrap().len());
+}
+
+#[test]
+fn scan_mode_produces_clean_grayscale_pages() {
+    let dir = temp_dir("img2pdf-scan");
+    let photo = dir.join("foto-dokumen.jpg");
+    // Kertas terang di atas meja gelap
+    RgbImage::from_fn(800, 1000, |x, y| {
+        let paper = (150..650).contains(&x) && (150..850).contains(&y);
+        if paper && y % 40 < 6 && (200..600).contains(&x) { Rgb([30, 30, 30]) } else if paper { Rgb([225, 220, 210]) } else { Rgb([60, 45, 35]) }
+    })
+    .save(&photo)
+    .unwrap();
+    let out = dir.join("out.pdf");
+
+    let options = ImageToPdfOptions { scan: true, ..options(PageSize::Fit, ImageQuality::Medium) };
+    images_to_pdf(&[photo], &out, &options, &no_progress).unwrap();
+
+    let image = &images_in(&out)[0];
+    assert_eq!(image.dict.get(b"ColorSpace").unwrap().as_name().unwrap(), b"DeviceGray");
+    // Meja terpotong: kira-kira seukuran kertas 500x700
+    let width = image.dict.get(b"Width").unwrap().as_i64().unwrap();
+    assert!((480..=520).contains(&width), "lebar {width}");
 }

@@ -83,7 +83,7 @@ export const useSettings = create<SettingsState>()(
     (set) => ({
       language: "id",
       compress: { preset: "balanced", grayscale: false, target: "none", customMb: 1 },
-      imageToPdf: { pageSize: "a4", orientation: "auto", margin: "none", quality: "medium", compressAfter: "none" },
+      imageToPdf: { pageSize: "a4", orientation: "auto", margin: "none", quality: "medium", scan: false, compressAfter: "none" },
       split: { mode: "eachPage", n: 2 },
       userPresets: { compress: [], imageToPdf: [] },
       pageNumbers: { format: "pageOfTotal", position: "bottomCenter", fontSize: "medium", firstNumber: 1, skipFirst: false },

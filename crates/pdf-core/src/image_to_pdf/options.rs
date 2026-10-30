@@ -49,6 +49,9 @@ pub struct ImageToPdfOptions {
     pub orientation: PageOrientation,
     pub margin: Margin,
     pub quality: ImageQuality,
+    /// Mode scan dokumen: potong ke kertas, luruskan, hitam-putih bersih
+    #[serde(default)]
+    pub scan: bool,
     /// Workflow berantai: langsung kecilkan PDF hasil (mis. dengan target ukuran)
     #[serde(default)]
     pub compress: Option<CompressOptions>,
