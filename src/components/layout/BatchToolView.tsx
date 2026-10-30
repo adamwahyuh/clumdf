@@ -1,11 +1,12 @@
 import type { ReactNode } from "react";
 import { useTranslation } from "react-i18next";
-import { Plus, type LucideIcon } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ActionBar } from "@/components/common/ActionBar";
 import { ProgressOverlay } from "@/components/common/ProgressOverlay";
 import { ResultCard } from "@/components/common/ResultCard";
 import { DropOverlay } from "@/components/files/DropOverlay";
+import { AddFilesButtons } from "@/components/files/AddFilesButtons";
 import { DropZone } from "@/components/files/DropZone";
 import { SortableFileGrid } from "@/components/files/SortableFileGrid";
 import type { Batch, BatchResult, FileQueueStore } from "@/hooks/use-batch";
@@ -37,7 +38,7 @@ export function BatchToolView<R>({ i18nKey, icon, queue, batch, settings, render
     add(paths);
   }
 
-  const { dragging, browse } = useFileInput(PDF_EXTENSIONS, "PDF", addFiles);
+  const { dragging, browse, browseFolder } = useFileInput(PDF_EXTENSIONS, "PDF", addFiles);
   useHotkey(["o"], browse, !running);
   useHotkey(["Enter"], run, !running && !results);
 
@@ -64,7 +65,7 @@ export function BatchToolView<R>({ i18nKey, icon, queue, batch, settings, render
               />
             ))
           ) : files.length === 0 ? (
-            <DropZone icon={icon} formats={t(`${i18nKey}.formats`)} onBrowse={browse} active={dragging} />
+            <DropZone icon={icon} formats={t(`${i18nKey}.formats`)} onBrowse={browse} onBrowseFolder={browseFolder} active={dragging} />
           ) : (
             <SortableFileGrid files={files} kind="pdf" onMove={move} onRemove={remove} />
           )}
@@ -75,10 +76,7 @@ export function BatchToolView<R>({ i18nKey, icon, queue, batch, settings, render
       {!results && (
         <ActionBar summary={summary}>
           {files.length > 0 && (
-            <Button variant="outline" onClick={browse}>
-              <Plus />
-              {t("files.add")}
-            </Button>
+            <AddFilesButtons onBrowse={browse} onBrowseFolder={browseFolder} />
           )}
           <Button disabled={!canRun} onClick={run}>
             {t(`${i18nKey}.action`)}

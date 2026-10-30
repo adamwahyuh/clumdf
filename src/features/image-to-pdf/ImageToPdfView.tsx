@@ -1,11 +1,12 @@
 import { useTranslation } from "react-i18next";
-import { Images, Plus } from "lucide-react";
+import { Images } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ToolHeader } from "@/components/layout/ToolHeader";
 import { ActionBar } from "@/components/common/ActionBar";
 import { ProgressOverlay } from "@/components/common/ProgressOverlay";
 import { ResultCard } from "@/components/common/ResultCard";
 import { DropOverlay } from "@/components/files/DropOverlay";
+import { AddFilesButtons } from "@/components/files/AddFilesButtons";
 import { DropZone } from "@/components/files/DropZone";
 import { SortableFileGrid } from "@/components/files/SortableFileGrid";
 import { useFileInput } from "@/hooks/use-file-input";
@@ -25,7 +26,7 @@ export function ImageToPdfView() {
     add(paths);
   }
 
-  const { dragging, browse } = useFileInput(IMAGE_EXTENSIONS, t("tools.imageToPdf.filterName"), addFiles);
+  const { dragging, browse, browseFolder } = useFileInput(IMAGE_EXTENSIONS, t("tools.imageToPdf.filterName"), addFiles);
   useHotkey(["o"], browse, !running);
   useHotkey(["Enter"], create, !running && !result);
 
@@ -45,7 +46,7 @@ export function ImageToPdfView() {
               onReset={reset}
             />
           ) : files.length === 0 ? (
-            <DropZone icon={Images} formats={t("tools.imageToPdf.formats")} onBrowse={browse} active={dragging} />
+            <DropZone icon={Images} formats={t("tools.imageToPdf.formats")} onBrowse={browse} onBrowseFolder={browseFolder} active={dragging} />
           ) : (
             <SortableFileGrid files={files} kind="image" onMove={move} onRemove={remove} />
           )}
@@ -56,10 +57,7 @@ export function ImageToPdfView() {
       {!result && (
         <ActionBar summary={files.length ? t("tools.imageToPdf.summary", { count: files.length }) : t("actionBar.empty")}>
           {files.length > 0 && (
-            <Button variant="outline" onClick={browse}>
-              <Plus />
-              {t("files.add")}
-            </Button>
+            <AddFilesButtons onBrowse={browse} onBrowseFolder={browseFolder} />
           )}
           <Button disabled={!canCreate} onClick={create}>
             {t("tools.imageToPdf.action")}

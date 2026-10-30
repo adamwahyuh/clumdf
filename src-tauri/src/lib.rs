@@ -11,6 +11,7 @@ pub fn run() {
         .plugin(tauri_plugin_store::Builder::new().build())
         .invoke_handler(tauri::generate_handler![
             commands::compress::compress_pdf,
+            commands::files::expand_paths,
             commands::image_to_pdf::images_to_pdf,
             commands::inspect::inspect_pdf,
             commands::merge::merge_pdfs,

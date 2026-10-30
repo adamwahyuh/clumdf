@@ -267,7 +267,8 @@
   },
   "dropZone": {
     "title": "Drop files here or click to choose",
-    "formats": "Supported formats: {{formats}}"
+    "formats": "Supported formats: {{formats}}",
+    "folder": "or choose a whole folder"
   },
   "actionBar": {
     "empty": "No files yet"
@@ -288,7 +289,9 @@
     "dropToAdd": "Drop to add",
     "replace": "Replace file",
     "summary_one": "{{count}} file · {{size}}",
-    "summary_other": "{{count}} files · {{size}}"
+    "summary_other": "{{count}} files · {{size}}",
+    "emptyFolder": "No supported files in this folder",
+    "addFolder": "Add folder"
   },
   "result": {
     "revealMac": "Show in Finder",

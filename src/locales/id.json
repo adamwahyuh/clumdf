@@ -254,7 +254,8 @@
   },
   "dropZone": {
     "title": "Tarik file ke sini atau klik untuk memilih",
-    "formats": "Format yang didukung: {{formats}}"
+    "formats": "Format yang didukung: {{formats}}",
+    "folder": "atau pilih satu folder"
   },
   "actionBar": {
     "empty": "Belum ada file"
@@ -272,7 +273,9 @@
     "unsupported": "{{count}} file dilewati karena formatnya tidak didukung",
     "dropToAdd": "Lepaskan untuk menambahkan",
     "replace": "Ganti file",
-    "summary": "{{count}} file · {{size}}"
+    "summary": "{{count}} file · {{size}}",
+    "emptyFolder": "Tidak ada file yang didukung di folder ini",
+    "addFolder": "Tambah folder"
   },
   "result": {
     "revealMac": "Tampilkan di Finder",

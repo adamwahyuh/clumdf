@@ -1,11 +1,12 @@
 import { useTranslation } from "react-i18next";
-import { FileStack, Plus } from "lucide-react";
+import { FileStack } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ToolHeader } from "@/components/layout/ToolHeader";
 import { ActionBar } from "@/components/common/ActionBar";
 import { ProgressOverlay } from "@/components/common/ProgressOverlay";
 import { ResultCard } from "@/components/common/ResultCard";
 import { DropOverlay } from "@/components/files/DropOverlay";
+import { AddFilesButtons } from "@/components/files/AddFilesButtons";
 import { DropZone } from "@/components/files/DropZone";
 import { SortableFileGrid } from "@/components/files/SortableFileGrid";
 import { useFileInput } from "@/hooks/use-file-input";
@@ -24,7 +25,7 @@ export function MergeView() {
     add(paths);
   }
 
-  const { dragging, browse } = useFileInput(PDF_EXTENSIONS, "PDF", addFiles);
+  const { dragging, browse, browseFolder } = useFileInput(PDF_EXTENSIONS, "PDF", addFiles);
   useHotkey(["o"], browse, !running);
   useHotkey(["Enter"], merge, !running && !result);
 
@@ -53,7 +54,7 @@ export function MergeView() {
             onReset={reset}
           />
         ) : files.length === 0 ? (
-          <DropZone icon={FileStack} formats={t("tools.merge.formats")} onBrowse={browse} active={dragging} />
+          <DropZone icon={FileStack} formats={t("tools.merge.formats")} onBrowse={browse} onBrowseFolder={browseFolder} active={dragging} />
         ) : (
           <SortableFileGrid files={files} kind="pdf" onMove={move} onRemove={remove} />
         )}
@@ -62,10 +63,7 @@ export function MergeView() {
       {!result && (
         <ActionBar summary={summary}>
           {files.length > 0 && (
-            <Button variant="outline" onClick={browse}>
-              <Plus />
-              {t("files.add")}
-            </Button>
+            <AddFilesButtons onBrowse={browse} onBrowseFolder={browseFolder} />
           )}
           <Button disabled={!canMerge} onClick={merge}>
             {t("tools.merge.action")}

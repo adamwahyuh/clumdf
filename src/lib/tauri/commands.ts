@@ -171,3 +171,13 @@ export function placeSignature(args: {
 }): Promise<SignReport> {
   return invoke("place_signature", args);
 }
+
+export interface ExpandedPaths {
+  accepted: string[];
+  rejected: number;
+}
+
+/** Buka folder (tidak rekursif, urutan alami) dan saring berdasarkan ekstensi. */
+export function expandPaths(paths: string[], extensions: readonly string[]): Promise<ExpandedPaths> {
+  return invoke("expand_paths", { paths, extensions });
+}

@@ -1,4 +1,5 @@
 pub mod compress;
+pub mod files;
 pub mod image_to_pdf;
 pub mod inspect;
 pub mod merge;

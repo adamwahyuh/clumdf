@@ -4,6 +4,7 @@
 pub mod compress;
 pub mod document;
 pub mod error;
+pub mod files;
 pub mod image_to_pdf;
 pub mod imaging;
 pub mod inspect;
