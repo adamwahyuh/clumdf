@@ -1,4 +1,7 @@
 {
+  "app": {
+    "name": "Clumdf"
+  },
   "groups": {
     "organize": "Organize",
     "optimize": "Optimize",

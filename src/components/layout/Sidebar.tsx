@@ -1,9 +1,8 @@
 import { useTranslation } from "react-i18next";
 import version from "../../../VERSION?raw";
 import { toolGroups, tools } from "@/app/tools";
-import { isMac } from "@/lib/platform";
-import { cn } from "@/lib/utils";
 import { LanguageSwitch } from "./LanguageSwitch";
+import { SidebarBrand } from "./SidebarBrand";
 import { SidebarItem } from "./SidebarItem";
 
 interface SidebarProps {
@@ -16,8 +15,7 @@ export function Sidebar({ activeId, onSelect }: SidebarProps) {
 
   return (
     <aside className="flex w-[220px] shrink-0 flex-col border-r border-sidebar-border bg-sidebar">
-      {/* Di macOS tombol traffic light menumpang di sini, jadi beri ruang + area geser jendela */}
-      <div data-tauri-drag-region className={cn("shrink-0", isMac ? "h-[52px]" : "h-3")} />
+      <SidebarBrand />
       <nav className="flex flex-col gap-4 overflow-y-auto px-3 pb-4">
         {toolGroups.map((group) => (
           <div key={group} className="flex flex-col gap-0.5">
