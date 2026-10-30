@@ -261,6 +261,27 @@
     "history": {
       "title": "Riwayat",
       "description": "File yang baru saja kamu proses di Berkas."
+    },
+    "pdfToImages": {
+      "title": "PDF ke Gambar",
+      "description": "Simpan setiap halaman PDF sebagai gambar.",
+      "action": "Ubah jadi gambar",
+      "formats": "PDF",
+      "formatLabel": "Format",
+      "formatHints": {
+        "jpg": "Ukuran kecil, cocok untuk dibagikan.",
+        "png": "Tajam tanpa kompresi, ukuran lebih besar."
+      },
+      "dpiLabel": "Resolusi (DPI)",
+      "dpiHints": {
+        "72": "Untuk dilihat di layar.",
+        "150": "Pilihan umum, tajam dan tidak terlalu besar.",
+        "300": "Untuk dicetak.",
+        "600": "Sangat tajam, file besar."
+      },
+      "running": "Mengubah file {{current}} dari {{total}}…",
+      "done": "PDF berhasil diubah jadi gambar",
+      "doneDetails": "Gambar dari {{count}} PDF disimpan di samping file aslinya"
     }
   },
   "dropZone": {
@@ -304,7 +325,8 @@
     "invalid_range": "Rentang halaman tidak valid. Contoh: 1-3, 5, 8-10",
     "wrong_password": "Password untuk {{name}} salah",
     "not_encrypted": "{{name}} tidak dikunci password",
-    "empty_password": "Password belum diisi"
+    "empty_password": "Password belum diisi",
+    "renderer_missing": "Komponen PDFium tidak ditemukan. Coba pasang ulang Berkas."
   },
   "language": {
     "label": "Bahasa",

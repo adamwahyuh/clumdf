@@ -187,3 +187,22 @@ export interface ExpandedPaths {
 export function expandPaths(paths: string[], extensions: readonly string[]): Promise<ExpandedPaths> {
   return invoke("expand_paths", { paths, extensions });
 }
+
+export interface RenderOptions {
+  format: "jpg" | "png";
+  /** 72–600 */
+  dpi: number;
+}
+
+export interface RenderReport {
+  files: string[];
+}
+
+export function pdfToImages(args: {
+  input: string;
+  outputDir: string;
+  options: RenderOptions;
+  jobId: string;
+}): Promise<RenderReport> {
+  return invoke("pdf_to_images", args);
+}

@@ -1,5 +1,6 @@
 import type { ComponentType } from "react";
 import {
+  FileImage,
   FileStack,
   FileX2,
   History,
@@ -22,6 +23,7 @@ import { ImageToPdfView } from "@/features/image-to-pdf/ImageToPdfView";
 import { MetadataView } from "@/features/metadata/MetadataView";
 import { OrganizeView } from "@/features/organize/OrganizeView";
 import { PageNumbersView } from "@/features/page-numbers/PageNumbersView";
+import { PdfToImagesView } from "@/features/pdf-to-images/PdfToImagesView";
 import { ProtectView } from "@/features/password/ProtectView";
 import { UnlockView } from "@/features/password/UnlockView";
 import { SignatureView } from "@/features/signature/SignatureView";
@@ -48,6 +50,7 @@ export const tools: Tool[] = [
   { id: "header-footer", group: "edit", icon: PanelTop, i18nKey: "tools.headerFooter", view: HeaderFooterView },
   { id: "compress", group: "optimize", icon: Minimize2, i18nKey: "tools.compress", view: CompressView },
   { id: "image-to-pdf", group: "convert", icon: Images, i18nKey: "tools.imageToPdf", view: ImageToPdfView },
+  { id: "pdf-to-images", group: "convert", icon: FileImage, i18nKey: "tools.pdfToImages", view: PdfToImagesView },
   { id: "protect", group: "security", icon: Lock, i18nKey: "tools.protect", view: ProtectView },
   { id: "unlock", group: "security", icon: LockOpen, i18nKey: "tools.unlock", view: UnlockView },
   { id: "metadata", group: "security", icon: FileX2, i18nKey: "tools.metadata", view: MetadataView },

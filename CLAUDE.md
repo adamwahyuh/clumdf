@@ -465,10 +465,11 @@ xcode-select --install
 
 # Development
 npm install
+./scripts/fetch-pdfium.sh   # sekali: unduh library PDFium (PDF → gambar)
 npm run tauri dev
 
-# Tes logika PDF
-cargo test -p pdf-core
+# Tes logika PDF (PDFIUM_DIR supaya tes render ikut jalan)
+PDFIUM_DIR=src-tauri/pdfium cargo test -p pdf-core
 
 # Cek tipe & build frontend
 npx tsc --noEmit

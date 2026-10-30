@@ -6,6 +6,7 @@ pub mod merge;
 pub mod metadata;
 pub mod organize;
 pub mod password;
+pub mod render;
 pub mod signature;
 pub mod split;
 pub mod stamp;

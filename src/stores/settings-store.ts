@@ -2,7 +2,7 @@ import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import type { CompressPreset } from "@/features/compress/presets";
 import type { CompressTarget } from "@/lib/compress-targets";
-import type { ImageToPdfOptions, SignatureInfo, StampPosition } from "@/lib/tauri/commands";
+import type { ImageToPdfOptions, RenderOptions, SignatureInfo, StampPosition } from "@/lib/tauri/commands";
 
 export interface CompressSettings {
   preset: CompressPreset;
@@ -66,6 +66,7 @@ interface SettingsState {
   headerFooter: HeaderFooterSettings;
   /** Tanda tangan tersimpan; `version` memaksa thumbnail dimuat ulang setelah diganti */
   signature: (SignatureInfo & { version: number }) | null;
+  pdfToImages: RenderOptions;
   setLanguage: (language: Language) => void;
   setCompress: (patch: Partial<CompressSettings>) => void;
   setImageToPdf: (patch: Partial<ImageToPdfSettings>) => void;
@@ -75,6 +76,7 @@ interface SettingsState {
   setPageNumbers: (patch: Partial<PageNumberSettings>) => void;
   setHeaderFooter: (patch: Partial<HeaderFooterSettings>) => void;
   setSignature: (signature: SignatureInfo) => void;
+  setPdfToImages: (patch: Partial<RenderOptions>) => void;
 }
 
 /** Pengaturan terakhir yang diingat antar sesi (localStorage webview). */
@@ -89,6 +91,7 @@ export const useSettings = create<SettingsState>()(
       pageNumbers: { format: "pageOfTotal", position: "bottomCenter", fontSize: "medium", firstNumber: 1, skipFirst: false },
       headerFooter: { header: "", headerAlign: "left", footer: "", footerAlign: "center", fontSize: "small" },
       signature: null,
+      pdfToImages: { format: "jpg", dpi: 150 },
       setLanguage: (language) => set({ language }),
       setCompress: (patch) => set((s) => ({ compress: { ...s.compress, ...patch } })),
       setImageToPdf: (patch) => set((s) => ({ imageToPdf: { ...s.imageToPdf, ...patch } })),
@@ -98,6 +101,7 @@ export const useSettings = create<SettingsState>()(
           userPresets: { ...s.userPresets, [tool]: [...s.userPresets[tool], { id: crypto.randomUUID(), name, values }] },
         })),
       setPageNumbers: (patch) => set((s) => ({ pageNumbers: { ...s.pageNumbers, ...patch } })),
+      setPdfToImages: (patch) => set((s) => ({ pdfToImages: { ...s.pdfToImages, ...patch } })),
       setSignature: (signature) => set({ signature: { ...signature, version: Date.now() } }),
       setHeaderFooter: (patch) => set((s) => ({ headerFooter: { ...s.headerFooter, ...patch } })),
       removeUserPreset: (tool, id) =>
@@ -119,6 +123,7 @@ export const useSettings = create<SettingsState>()(
           userPresets: { ...current.userPresets, ...s.userPresets },
           pageNumbers: { ...current.pageNumbers, ...s.pageNumbers },
           headerFooter: { ...current.headerFooter, ...s.headerFooter },
+          pdfToImages: { ...current.pdfToImages, ...s.pdfToImages },
         };
       },
     },

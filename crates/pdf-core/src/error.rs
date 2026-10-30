@@ -31,6 +31,9 @@ pub enum PdfError {
         source: std::io::Error,
     },
 
+    #[error("library PDFium tidak ditemukan ({reason})")]
+    RendererMissing { reason: String },
+
     #[error("tidak ada file untuk diproses")]
     NoInput,
 }
@@ -46,6 +49,7 @@ impl PdfError {
             PdfError::EmptyPassword => "empty_password",
             PdfError::InvalidRange { .. } => "invalid_range",
             PdfError::Io { .. } => "io",
+            PdfError::RendererMissing { .. } => "renderer_missing",
             PdfError::NoInput => "no_input",
         }
     }
@@ -58,7 +62,10 @@ impl PdfError {
             | PdfError::WrongPassword { path }
             | PdfError::NotEncrypted { path }
             | PdfError::Io { path, .. } => Some(path),
-            PdfError::EmptyPassword | PdfError::InvalidRange { .. } | PdfError::NoInput => None,
+            PdfError::EmptyPassword
+            | PdfError::InvalidRange { .. }
+            | PdfError::RendererMissing { .. }
+            | PdfError::NoInput => None,
         }
     }
 

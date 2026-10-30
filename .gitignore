@@ -25,3 +25,6 @@ dist-ssr
 
 # Rust
 /target
+
+# Binary PDFium (diunduh lewat scripts/fetch-pdfium.sh)
+/src-tauri/pdfium/
