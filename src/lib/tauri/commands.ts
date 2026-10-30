@@ -263,3 +263,23 @@ export function readTextFile(path: string): Promise<string> {
 export function writeTextFile(path: string, content: string): Promise<void> {
   return invoke("write_text_file", { path, content });
 }
+
+export interface PdfMetadata {
+  title: string | null;
+  author: string | null;
+  subject: string | null;
+  keywords: string | null;
+  creator: string | null;
+  producer: string | null;
+  /** Hanya dibaca; format PDF mentah, mis. "D:20240131120000+07'00'" */
+  creationDate: string | null;
+  modDate: string | null;
+}
+
+export function readPdfMetadata(path: string): Promise<PdfMetadata> {
+  return invoke("read_pdf_metadata", { path });
+}
+
+export function writePdfMetadata(args: { input: string; output: string; metadata: PdfMetadata }): Promise<{ outputSize: number }> {
+  return invoke("write_pdf_metadata", args);
+}

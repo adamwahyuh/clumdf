@@ -29,7 +29,7 @@ pub use image_to_pdf::{ImageToPdfOptions, ImageToPdfReport, images_to_pdf};
 pub use inspect::{PdfInfo, inspect};
 pub use markdown::{MarkdownOptions, MarkdownReport, markdown_to_pdf};
 pub use merge::{MergeReport, merge_pdfs};
-pub use metadata::{StripReport, strip_metadata};
+pub use metadata::{EditReport, PdfMetadata, StripReport, read_metadata, strip_metadata, write_metadata};
 pub use ocr::{OcrReport, OcrTools, ocr_pdf};
 pub use organize::{PageEdit, PagesReport, edit_pages};
 pub use password::{PasswordReport, protect_pdf, unlock_pdf};

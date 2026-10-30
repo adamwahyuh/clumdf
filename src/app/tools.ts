@@ -2,6 +2,7 @@ import type { ComponentType } from "react";
 import type { FileKind } from "@/types/files";
 import {
   FileImage,
+  FilePen,
   FileStack,
   FileX2,
   History,
@@ -20,6 +21,7 @@ import {
 } from "lucide-react";
 import { MergeView } from "@/features/merge/MergeView";
 import { CompressView } from "@/features/compress/CompressView";
+import { EditMetadataView } from "@/features/edit-metadata/EditMetadataView";
 import { HeaderFooterView } from "@/features/header-footer/HeaderFooterView";
 import { HistoryView } from "@/features/history/HistoryView";
 import { ImageToPdfView } from "@/features/image-to-pdf/ImageToPdfView";
@@ -55,6 +57,7 @@ export const tools: Tool[] = [
   { id: "signature", group: "edit", icon: Signature, i18nKey: "tools.signature", view: SignatureView, accepts: "pdf" },
   { id: "page-numbers", group: "edit", icon: ListOrdered, i18nKey: "tools.pageNumbers", view: PageNumbersView, accepts: "pdf" },
   { id: "header-footer", group: "edit", icon: PanelTop, i18nKey: "tools.headerFooter", view: HeaderFooterView, accepts: "pdf" },
+  { id: "edit-metadata", group: "edit", icon: FilePen, i18nKey: "tools.editMetadata", view: EditMetadataView, accepts: "pdf" },
   { id: "compress", group: "optimize", icon: Minimize2, i18nKey: "tools.compress", view: CompressView, accepts: "pdf" },
   { id: "image-to-pdf", group: "convert", icon: Images, i18nKey: "tools.imageToPdf", view: ImageToPdfView, accepts: "image" },
   { id: "markdown", group: "convert", icon: NotebookPen, i18nKey: "tools.markdown", view: MarkdownView },

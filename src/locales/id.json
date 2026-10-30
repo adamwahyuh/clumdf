@@ -366,6 +366,37 @@
         "tips": "# Judul   ## Subjudul\n**tebal**   _miring_   ~~coret~~\n- daftar berpoin\n1. daftar bernomor\n> kutipan\n[teks](https://alamat)\nSatu Enter = baris baru, baris kosong = paragraf baru."
       },
       "sample": "# Judul Dokumen\n\nSelamat datang! Tulis dokumenmu di sini, lalu klik **Simpan sebagai PDF**.\nPakai toolbar di atas untuk memberi format, seperti di Word.\n\n## Contoh isi\n\n- Teks **tebal**, _miring_, dan ~~dicoret~~\n- Daftar berpoin dan bernomor\n- [Link](https://contoh.id) yang bisa diklik di PDF\n\n| Nama | Keterangan |\n|---|---|\n| Tabel | Klik ikon tabel di toolbar |\n| Gambar | Klik ikon gambar, atau tarik foto ke sini |\n\n> Buka tab **Pratinjau PDF** untuk melihat hasilnya.\n"
+    },
+    "editMetadata": {
+      "title": "Edit Metadata",
+      "description": "Ubah judul, penulis, dan info dokumen lain yang tersimpan di PDF.",
+      "action": "Simpan",
+      "formats": "PDF",
+      "created": "Dibuat",
+      "modified": "Diubah",
+      "unknown": "tidak diketahui",
+      "fields": {
+        "title": "Judul",
+        "author": "Penulis",
+        "subject": "Subjek",
+        "keywords": "Kata kunci",
+        "creator": "Aplikasi pembuat",
+        "producer": "Dibuat dengan"
+      },
+      "placeholders": {
+        "title": "mis. Laporan Tahunan 2024",
+        "author": "mis. Budi Santoso",
+        "subject": "mis. Lampiran lamaran kerja",
+        "keywords": "pisahkan dengan koma",
+        "creator": "mis. Microsoft Word",
+        "producer": "mis. Berkas"
+      },
+      "hint": "Kolom yang dikosongkan akan dihapus dari PDF. Info ini terlihat di Properti/Get Info dan dipakai saat mencari file.",
+      "changed": "Ada perubahan yang belum disimpan",
+      "unchanged": "Belum ada perubahan",
+      "running": "Menyimpan metadata…",
+      "done": "Metadata berhasil diubah",
+      "doneDetails": "Disimpan sebagai salinan baru; file asli tidak diubah."
     }
   },
   "dropZone": {

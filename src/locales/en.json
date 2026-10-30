@@ -382,6 +382,37 @@
         "tips": "# Heading   ## Subheading\n**bold**   _italic_   ~~strike~~\n- bulleted list\n1. numbered list\n> quote\n[text](https://address)\nOne Enter = new line, blank line = new paragraph."
       },
       "sample": "# Document Title\n\nWelcome! Write your document here, then click **Save as PDF**.\nUse the toolbar above to format text, just like in Word.\n\n## Example content\n\n- **Bold**, _italic_, and ~~struck~~ text\n- Bulleted and numbered lists\n- [Links](https://example.com) that are clickable in the PDF\n\n| Name | Notes |\n|---|---|\n| Table | Click the table icon in the toolbar |\n| Image | Click the image icon, or drag a photo here |\n\n> Open the **PDF Preview** tab to see the result.\n"
+    },
+    "editMetadata": {
+      "title": "Edit Metadata",
+      "description": "Change the title, author, and other document info stored in a PDF.",
+      "action": "Save",
+      "formats": "PDF",
+      "created": "Created",
+      "modified": "Modified",
+      "unknown": "unknown",
+      "fields": {
+        "title": "Title",
+        "author": "Author",
+        "subject": "Subject",
+        "keywords": "Keywords",
+        "creator": "Created in",
+        "producer": "Produced by"
+      },
+      "placeholders": {
+        "title": "e.g. Annual Report 2024",
+        "author": "e.g. Jane Doe",
+        "subject": "e.g. Job application attachment",
+        "keywords": "separate with commas",
+        "creator": "e.g. Microsoft Word",
+        "producer": "e.g. Berkas"
+      },
+      "hint": "Empty fields are removed from the PDF. This info shows in Properties/Get Info and helps file search.",
+      "changed": "Unsaved changes",
+      "unchanged": "No changes yet",
+      "running": "Saving metadata…",
+      "done": "Metadata updated",
+      "doneDetails": "Saved as a new copy; the original file is unchanged."
     }
   },
   "dropZone": {
