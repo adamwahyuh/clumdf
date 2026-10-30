@@ -1,6 +1,9 @@
 import { useState } from "react";
 import { ActiveToolContext } from "@/app/active-tool";
 import { tools } from "@/app/tools";
+import { OpenWithDialog } from "@/components/layout/OpenWithDialog";
+import { useOsOpenedFiles } from "@/hooks/use-os-opened-files";
+import { useOpenedFiles } from "@/stores/opened-files-store";
 import { useHotkey } from "@/hooks/use-hotkey";
 import { AppShell } from "@/components/layout/AppShell";
 import { Toaster } from "@/components/ui/sonner";
@@ -13,6 +16,7 @@ export default function App() {
     const tool = tools[Number(key) - 1];
     if (tool) setActiveId(tool.id);
   });
+  const opened = useOsOpenedFiles();
   const active = tools.find((tool) => tool.id === activeId)!;
   const ActiveView = active.view;
 
@@ -24,6 +28,16 @@ export default function App() {
           <ActiveView key={activeId} />
         </ActiveToolContext.Provider>
       </AppShell>
+      <OpenWithDialog
+        paths={opened.pending}
+        onClose={opened.clear}
+        onChoose={(tool) => {
+          // Layar fitur mengambil file ini lewat useFileInput
+          useOpenedFiles.getState().setHandoff(opened.pending);
+          setActiveId(tool.id);
+          opened.clear();
+        }}
+      />
       <Toaster />
     </TooltipProvider>
   );

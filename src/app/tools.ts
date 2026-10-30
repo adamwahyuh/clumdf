@@ -1,4 +1,5 @@
 import type { ComponentType } from "react";
+import type { FileKind } from "@/types/files";
 import {
   FileImage,
   FileStack,
@@ -38,22 +39,24 @@ export interface Tool {
   /** Prefix kunci i18n, mis. "tools.merge" → "tools.merge.title" */
   i18nKey: string;
   view: ComponentType;
+  /** Jenis file yang diterima; dipakai dialog "Buka dengan" */
+  accepts?: FileKind;
 }
 
 // Urutan di sini = urutan di sidebar = urutan shortcut ⌘1..9.
 export const tools: Tool[] = [
-  { id: "merge", group: "organize", icon: FileStack, i18nKey: "tools.merge", view: MergeView },
-  { id: "split", group: "organize", icon: Scissors, i18nKey: "tools.split", view: SplitView },
-  { id: "organize", group: "organize", icon: LayoutGrid, i18nKey: "tools.organize", view: OrganizeView },
-  { id: "signature", group: "edit", icon: Signature, i18nKey: "tools.signature", view: SignatureView },
-  { id: "page-numbers", group: "edit", icon: ListOrdered, i18nKey: "tools.pageNumbers", view: PageNumbersView },
-  { id: "header-footer", group: "edit", icon: PanelTop, i18nKey: "tools.headerFooter", view: HeaderFooterView },
-  { id: "compress", group: "optimize", icon: Minimize2, i18nKey: "tools.compress", view: CompressView },
-  { id: "image-to-pdf", group: "convert", icon: Images, i18nKey: "tools.imageToPdf", view: ImageToPdfView },
-  { id: "pdf-to-images", group: "convert", icon: FileImage, i18nKey: "tools.pdfToImages", view: PdfToImagesView },
-  { id: "protect", group: "security", icon: Lock, i18nKey: "tools.protect", view: ProtectView },
-  { id: "unlock", group: "security", icon: LockOpen, i18nKey: "tools.unlock", view: UnlockView },
-  { id: "metadata", group: "security", icon: FileX2, i18nKey: "tools.metadata", view: MetadataView },
+  { id: "merge", group: "organize", icon: FileStack, i18nKey: "tools.merge", view: MergeView, accepts: "pdf" },
+  { id: "split", group: "organize", icon: Scissors, i18nKey: "tools.split", view: SplitView, accepts: "pdf" },
+  { id: "organize", group: "organize", icon: LayoutGrid, i18nKey: "tools.organize", view: OrganizeView, accepts: "pdf" },
+  { id: "signature", group: "edit", icon: Signature, i18nKey: "tools.signature", view: SignatureView, accepts: "pdf" },
+  { id: "page-numbers", group: "edit", icon: ListOrdered, i18nKey: "tools.pageNumbers", view: PageNumbersView, accepts: "pdf" },
+  { id: "header-footer", group: "edit", icon: PanelTop, i18nKey: "tools.headerFooter", view: HeaderFooterView, accepts: "pdf" },
+  { id: "compress", group: "optimize", icon: Minimize2, i18nKey: "tools.compress", view: CompressView, accepts: "pdf" },
+  { id: "image-to-pdf", group: "convert", icon: Images, i18nKey: "tools.imageToPdf", view: ImageToPdfView, accepts: "image" },
+  { id: "pdf-to-images", group: "convert", icon: FileImage, i18nKey: "tools.pdfToImages", view: PdfToImagesView, accepts: "pdf" },
+  { id: "protect", group: "security", icon: Lock, i18nKey: "tools.protect", view: ProtectView, accepts: "pdf" },
+  { id: "unlock", group: "security", icon: LockOpen, i18nKey: "tools.unlock", view: UnlockView, accepts: "pdf" },
+  { id: "metadata", group: "security", icon: FileX2, i18nKey: "tools.metadata", view: MetadataView, accepts: "pdf" },
   { id: "history", group: "other", icon: History, i18nKey: "tools.history", view: HistoryView },
 ];
 

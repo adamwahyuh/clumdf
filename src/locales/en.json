@@ -395,5 +395,11 @@
     "more_one": "+{{count}} more file",
     "more_other": "+{{count}} more files",
     "missing": "{{name}} is no longer where it was"
+  },
+  "openWith": {
+    "title": "What would you like to do?",
+    "count_one": "{{count}} file",
+    "count_other": "{{count}} files",
+    "unsupported": "Berkas can't process this kind of file yet."
   }
 }

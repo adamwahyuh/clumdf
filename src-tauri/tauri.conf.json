@@ -44,6 +44,34 @@
     ],
     "resources": [
       "pdfium/*"
+    ],
+    "fileAssociations": [
+      {
+        "ext": [
+          "pdf"
+        ],
+        "name": "PDF",
+        "description": "Dokumen PDF",
+        "mimeType": "application/pdf",
+        "role": "Viewer",
+        "rank": "Alternate"
+      },
+      {
+        "ext": [
+          "jpg",
+          "jpeg",
+          "png",
+          "webp",
+          "bmp",
+          "tif",
+          "tiff",
+          "gif"
+        ],
+        "name": "Gambar",
+        "description": "Gambar",
+        "role": "Viewer",
+        "rank": "Alternate"
+      }
     ]
   }
 }

@@ -376,5 +376,10 @@
     "remove": "Hapus dari riwayat",
     "more": "+{{count}} file lain",
     "missing": "{{name}} sudah tidak ada di tempatnya"
+  },
+  "openWith": {
+    "title": "Mau diapakan file ini?",
+    "count": "{{count}} file",
+    "unsupported": "Berkas belum bisa memproses jenis file ini."
   }
 }

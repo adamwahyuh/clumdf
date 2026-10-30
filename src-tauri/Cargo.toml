@@ -26,5 +26,6 @@ pdf-core = { path = "../crates/pdf-core" }
 tauri-plugin-dialog = "2"
 tauri-plugin-fs = "2"
 tauri-plugin-store = "2"
+tauri-plugin-single-instance = "2"
 
 

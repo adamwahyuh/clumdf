@@ -206,3 +206,8 @@ export function pdfToImages(args: {
 }): Promise<RenderReport> {
   return invoke("pdf_to_images", args);
 }
+
+/** Ambil (dan kosongkan) file yang dibuka lewat OS: ikon Dock, "Buka dengan", argumen. */
+export function takeOpenedFiles(): Promise<string[]> {
+  return invoke("take_opened_files");
+}

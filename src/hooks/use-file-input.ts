@@ -1,8 +1,10 @@
+import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { toast } from "sonner";
 import { expandPaths } from "@/lib/tauri/commands";
 import { pickFiles, pickFolder } from "@/lib/tauri/dialogs";
 import { errorMessage, toAppError } from "@/lib/tauri/errors";
+import { useOpenedFiles } from "@/stores/opened-files-store";
 import { useFileDrop } from "./use-file-drop";
 
 /**
@@ -24,6 +26,15 @@ export function useFileInput(extensions: readonly string[], filterName: string, 
   }
 
   const dragging = useFileDrop((paths) => void addExpanded(paths));
+
+  // File yang dibuka lewat OS lalu dipilihkan fitur ini (lihat OpenWithDialog)
+  const handoff = useOpenedFiles((s) => s.handoff);
+  useEffect(() => {
+    // Cek store, bukan hanya nilai render: StrictMode menjalankan efek dua kali
+    if (!handoff || useOpenedFiles.getState().handoff !== handoff) return;
+    useOpenedFiles.getState().setHandoff(null);
+    void addExpanded(handoff);
+  }, [handoff]); // addExpanded sengaja tidak jadi dependensi: cukup bereaksi saat handoff berubah
 
   async function browse() {
     const paths = await pickFiles(filterName, [...extensions]);
