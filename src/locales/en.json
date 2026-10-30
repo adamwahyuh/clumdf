@@ -312,6 +312,76 @@
       "done": "Text recognized",
       "doneDetails_one": "{{count}} file saved with the -ocr suffix",
       "doneDetails_other": "{{count}} files saved with the -ocr suffix"
+    },
+    "markdown": {
+      "title": "Write a Document",
+      "description": "Write in Markdown and save it as a clean PDF.",
+      "action": "Save as PDF",
+      "tabs": {
+        "label": "View",
+        "write": "Write",
+        "preview": "PDF Preview"
+      },
+      "unsaved": "unsaved",
+      "new": "New",
+      "open": "Open",
+      "save": "Save",
+      "untitled": "Untitled document",
+      "discardTitle": "Discard changes?",
+      "discardMessage": "This document has unsaved changes. Continue without saving?",
+      "saved": "{{name}} saved",
+      "exported": "PDF saved: {{name}}",
+      "words_one": "{{count}} word",
+      "words_other": "{{count}} words",
+      "updating": "Updating…",
+      "pageAlt": "Page {{page}}",
+      "editorLabel": "Document text",
+      "placeholder": "Start writing here…",
+      "placeholders": {
+        "bold": "bold text",
+        "italic": "italic text",
+        "strike": "struck text",
+        "code": "code",
+        "link": "link text",
+        "column": "Column {{n}}"
+      },
+      "toolbar": {
+        "label": "Formatting",
+        "undo": "Undo",
+        "redo": "Redo",
+        "style": "Paragraph style",
+        "normal": "Normal text",
+        "heading": "Heading {{level}}",
+        "bold": "Bold",
+        "italic": "Italic",
+        "strike": "Strikethrough",
+        "code": "Code",
+        "bullet": "Bulleted list",
+        "numbered": "Numbered list",
+        "quote": "Quote",
+        "link": "Insert link",
+        "image": "Insert image",
+        "table": "Insert table",
+        "rule": "Divider line",
+        "pageBreak": "Start a new page"
+      },
+      "settings": {
+        "paper": "Paper size",
+        "font": "Typeface",
+        "sans": "Modern",
+        "serif": "Classic",
+        "fontSize": "Font size",
+        "margin": "Margins",
+        "margins": {
+          "narrow": "Narrow",
+          "normal": "Normal",
+          "wide": "Wide"
+        },
+        "pageNumbers": "Page numbers",
+        "tipsTitle": "Writing tips",
+        "tips": "# Heading   ## Subheading\n**bold**   _italic_   ~~strike~~\n- bulleted list\n1. numbered list\n> quote\n[text](https://address)\nOne Enter = new line, blank line = new paragraph."
+      },
+      "sample": "# Document Title\n\nWelcome! Write your document here, then click **Save as PDF**.\nUse the toolbar above to format text, just like in Word.\n\n## Example content\n\n- **Bold**, _italic_, and ~~struck~~ text\n- Bulleted and numbered lists\n- [Links](https://example.com) that are clickable in the PDF\n\n| Name | Notes |\n|---|---|\n| Table | Click the table icon in the toolbar |\n| Image | Click the image icon, or drag a photo here |\n\n> Open the **PDF Preview** tab to see the result.\n"
     }
   },
   "dropZone": {

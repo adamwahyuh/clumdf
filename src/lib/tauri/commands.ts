@@ -228,3 +228,38 @@ export function ocrStatus(): Promise<string | null> {
 export function ocrPdf(args: { input: string; output: string; jobId: string }): Promise<OcrReport> {
   return invoke("ocr_pdf", args);
 }
+
+export interface MarkdownOptions {
+  pageSize: Exclude<PageSize, "fit">;
+  font: "sans" | "serif";
+  fontSize: number;
+  marginMm: number;
+  pageNumbers: boolean;
+}
+
+export interface MarkdownReport {
+  pageCount: number;
+  outputSize: number;
+}
+
+export function markdownToPdf(args: {
+  markdown: string;
+  baseDir: string | null;
+  output: string;
+  options: MarkdownOptions;
+}): Promise<MarkdownReport> {
+  return invoke("markdown_to_pdf", args);
+}
+
+/** Buat PDF pratinjau di folder cache app; mengembalikan path-nya. */
+export function markdownPreview(args: { markdown: string; baseDir: string | null; options: MarkdownOptions }): Promise<string> {
+  return invoke("markdown_preview", args);
+}
+
+export function readTextFile(path: string): Promise<string> {
+  return invoke("read_text_file", { path });
+}
+
+export function writeTextFile(path: string, content: string): Promise<void> {
+  return invoke("write_text_file", { path, content });
+}

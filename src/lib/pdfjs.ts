@@ -7,7 +7,8 @@ GlobalWorkerOptions.workerSrc = workerUrl;
 /** Buka PDF lokal untuk dirender; panggil `close()` setelah selesai. */
 export async function openPdf(path: string): Promise<{ doc: PDFDocumentProxy; close: () => Promise<void> }> {
   // shortcut: seluruh file dibaca ke memori hanya untuk thumbnail; pakai range request bila PDF besar terasa lambat
-  const data = await fetch(convertFileSrc(path)).then((res) => res.arrayBuffer());
+  // no-store: file pratinjau ditimpa di path yang sama, jangan pakai salinan cache
+  const data = await fetch(convertFileSrc(path), { cache: "no-store" }).then((res) => res.arrayBuffer());
   const task = getDocument({ data });
   return { doc: await task.promise, close: () => task.destroy() };
 }

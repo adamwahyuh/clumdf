@@ -19,6 +19,7 @@ jobs:
       - uses: Swatinem/rust-cache@v2
       - run: npm ci
       - run: npx tsc --noEmit
+      - run: npm test
       - run: npm run build
       - run: ./scripts/fetch-pdfium.sh
       # pdf-core tidak bergantung pada Tauri, jadi tidak perlu library sistem webview;

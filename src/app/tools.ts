@@ -11,6 +11,7 @@ import {
   Lock,
   LockOpen,
   Minimize2,
+  NotebookPen,
   PanelTop,
   ScanText,
   Scissors,
@@ -22,6 +23,7 @@ import { CompressView } from "@/features/compress/CompressView";
 import { HeaderFooterView } from "@/features/header-footer/HeaderFooterView";
 import { HistoryView } from "@/features/history/HistoryView";
 import { ImageToPdfView } from "@/features/image-to-pdf/ImageToPdfView";
+import { MarkdownView } from "@/features/markdown/MarkdownView";
 import { MetadataView } from "@/features/metadata/MetadataView";
 import { OcrView } from "@/features/ocr/OcrView";
 import { OrganizeView } from "@/features/organize/OrganizeView";
@@ -55,6 +57,7 @@ export const tools: Tool[] = [
   { id: "header-footer", group: "edit", icon: PanelTop, i18nKey: "tools.headerFooter", view: HeaderFooterView, accepts: "pdf" },
   { id: "compress", group: "optimize", icon: Minimize2, i18nKey: "tools.compress", view: CompressView, accepts: "pdf" },
   { id: "image-to-pdf", group: "convert", icon: Images, i18nKey: "tools.imageToPdf", view: ImageToPdfView, accepts: "image" },
+  { id: "markdown", group: "convert", icon: NotebookPen, i18nKey: "tools.markdown", view: MarkdownView },
   { id: "ocr", group: "convert", icon: ScanText, i18nKey: "tools.ocr", view: OcrView, accepts: "pdf" },
   { id: "pdf-to-images", group: "convert", icon: FileImage, i18nKey: "tools.pdfToImages", view: PdfToImagesView, accepts: "pdf" },
   { id: "protect", group: "security", icon: Lock, i18nKey: "tools.protect", view: ProtectView, accepts: "pdf" },

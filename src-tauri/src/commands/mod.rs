@@ -2,6 +2,7 @@ pub mod compress;
 pub mod files;
 pub mod image_to_pdf;
 pub mod inspect;
+pub mod markdown;
 pub mod merge;
 pub mod metadata;
 pub mod ocr;

@@ -2,7 +2,7 @@ import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import type { CompressPreset } from "@/features/compress/presets";
 import type { CompressTarget } from "@/lib/compress-targets";
-import type { ImageToPdfOptions, RenderOptions, SignatureInfo, StampPosition } from "@/lib/tauri/commands";
+import type { ImageToPdfOptions, MarkdownOptions, RenderOptions, SignatureInfo, StampPosition } from "@/lib/tauri/commands";
 
 export interface CompressSettings {
   preset: CompressPreset;
@@ -67,6 +67,7 @@ interface SettingsState {
   /** Tanda tangan tersimpan; `version` memaksa thumbnail dimuat ulang setelah diganti */
   signature: (SignatureInfo & { version: number }) | null;
   pdfToImages: RenderOptions;
+  markdown: MarkdownOptions;
   setLanguage: (language: Language) => void;
   setCompress: (patch: Partial<CompressSettings>) => void;
   setImageToPdf: (patch: Partial<ImageToPdfSettings>) => void;
@@ -77,6 +78,7 @@ interface SettingsState {
   setHeaderFooter: (patch: Partial<HeaderFooterSettings>) => void;
   setSignature: (signature: SignatureInfo) => void;
   setPdfToImages: (patch: Partial<RenderOptions>) => void;
+  setMarkdown: (patch: Partial<MarkdownOptions>) => void;
 }
 
 /** Pengaturan terakhir yang diingat antar sesi (localStorage webview). */
@@ -92,6 +94,7 @@ export const useSettings = create<SettingsState>()(
       headerFooter: { header: "", headerAlign: "left", footer: "", footerAlign: "center", fontSize: "small" },
       signature: null,
       pdfToImages: { format: "jpg", dpi: 150 },
+      markdown: { pageSize: "a4", font: "sans", fontSize: 11, marginMm: 25, pageNumbers: true },
       setLanguage: (language) => set({ language }),
       setCompress: (patch) => set((s) => ({ compress: { ...s.compress, ...patch } })),
       setImageToPdf: (patch) => set((s) => ({ imageToPdf: { ...s.imageToPdf, ...patch } })),
@@ -101,6 +104,7 @@ export const useSettings = create<SettingsState>()(
           userPresets: { ...s.userPresets, [tool]: [...s.userPresets[tool], { id: crypto.randomUUID(), name, values }] },
         })),
       setPageNumbers: (patch) => set((s) => ({ pageNumbers: { ...s.pageNumbers, ...patch } })),
+      setMarkdown: (patch) => set((s) => ({ markdown: { ...s.markdown, ...patch } })),
       setPdfToImages: (patch) => set((s) => ({ pdfToImages: { ...s.pdfToImages, ...patch } })),
       setSignature: (signature) => set({ signature: { ...signature, version: Date.now() } }),
       setHeaderFooter: (patch) => set((s) => ({ headerFooter: { ...s.headerFooter, ...patch } })),
@@ -124,6 +128,7 @@ export const useSettings = create<SettingsState>()(
           pageNumbers: { ...current.pageNumbers, ...s.pageNumbers },
           headerFooter: { ...current.headerFooter, ...s.headerFooter },
           pdfToImages: { ...current.pdfToImages, ...s.pdfToImages },
+          markdown: { ...current.markdown, ...s.markdown },
         };
       },
     },

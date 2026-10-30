@@ -297,6 +297,75 @@
       "running": "Mengenali teks file {{current}} dari {{total}}…",
       "done": "Teks berhasil dikenali",
       "doneDetails": "{{count}} file disimpan dengan akhiran -ocr"
+    },
+    "markdown": {
+      "title": "Tulis Dokumen",
+      "description": "Tulis dengan Markdown lalu simpan sebagai PDF yang rapi.",
+      "action": "Simpan sebagai PDF",
+      "tabs": {
+        "label": "Tampilan",
+        "write": "Tulis",
+        "preview": "Pratinjau PDF"
+      },
+      "unsaved": "belum disimpan",
+      "new": "Baru",
+      "open": "Buka",
+      "save": "Simpan",
+      "untitled": "Dokumen tanpa judul",
+      "discardTitle": "Buang perubahan?",
+      "discardMessage": "Dokumen ini punya perubahan yang belum disimpan. Lanjutkan tanpa menyimpan?",
+      "saved": "{{name}} disimpan",
+      "exported": "PDF disimpan: {{name}}",
+      "words": "{{count}} kata",
+      "updating": "Memperbarui…",
+      "pageAlt": "Halaman {{page}}",
+      "editorLabel": "Isi dokumen",
+      "placeholder": "Mulai menulis di sini…",
+      "placeholders": {
+        "bold": "teks tebal",
+        "italic": "teks miring",
+        "strike": "teks dicoret",
+        "code": "kode",
+        "link": "teks link",
+        "column": "Kolom {{n}}"
+      },
+      "toolbar": {
+        "label": "Format",
+        "undo": "Urungkan",
+        "redo": "Ulangi",
+        "style": "Gaya paragraf",
+        "normal": "Teks biasa",
+        "heading": "Judul {{level}}",
+        "bold": "Tebal",
+        "italic": "Miring",
+        "strike": "Coret",
+        "code": "Kode",
+        "bullet": "Daftar berpoin",
+        "numbered": "Daftar bernomor",
+        "quote": "Kutipan",
+        "link": "Sisipkan link",
+        "image": "Sisipkan gambar",
+        "table": "Sisipkan tabel",
+        "rule": "Garis pemisah",
+        "pageBreak": "Mulai halaman baru"
+      },
+      "settings": {
+        "paper": "Ukuran kertas",
+        "font": "Huruf",
+        "sans": "Modern",
+        "serif": "Klasik",
+        "fontSize": "Ukuran huruf",
+        "margin": "Margin",
+        "margins": {
+          "narrow": "Sempit",
+          "normal": "Normal",
+          "wide": "Lebar"
+        },
+        "pageNumbers": "Nomor halaman",
+        "tipsTitle": "Tips menulis",
+        "tips": "# Judul   ## Subjudul\n**tebal**   _miring_   ~~coret~~\n- daftar berpoin\n1. daftar bernomor\n> kutipan\n[teks](https://alamat)\nSatu Enter = baris baru, baris kosong = paragraf baru."
+      },
+      "sample": "# Judul Dokumen\n\nSelamat datang! Tulis dokumenmu di sini, lalu klik **Simpan sebagai PDF**.\nPakai toolbar di atas untuk memberi format, seperti di Word.\n\n## Contoh isi\n\n- Teks **tebal**, _miring_, dan ~~dicoret~~\n- Daftar berpoin dan bernomor\n- [Link](https://contoh.id) yang bisa diklik di PDF\n\n| Nama | Keterangan |\n|---|---|\n| Tabel | Klik ikon tabel di toolbar |\n| Gambar | Klik ikon gambar, atau tarik foto ke sini |\n\n> Buka tab **Pratinjau PDF** untuk melihat hasilnya.\n"
     }
   },
   "dropZone": {

@@ -46,6 +46,10 @@ fn images_and_links_are_kept() {
     let Block::Paragraph(p) = &blocks[0] else { panic!() };
     assert_eq!(p[1].style.link.as_deref(), Some("https://contoh.id"));
     assert_eq!(blocks[1], Block::Image { src: "logo.png".into(), alt: "logo".into() });
+
+    // Bentuk yang disisipkan editor: path berspasi di dalam <…>
+    let inserted = parse("![foto saya](</Users/budi/Foto Saya/ktp 1.png>)");
+    assert_eq!(inserted[0], Block::Image { src: "/Users/budi/Foto Saya/ktp 1.png".into(), alt: "foto saya".into() });
 }
 
 #[test]
