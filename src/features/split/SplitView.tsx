@@ -46,6 +46,7 @@ export function SplitView() {
               title={t("tools.split.done")}
               details={t("tools.split.doneDetails", { count: s.result.files.length })}
               outputPath={s.result.files[0]}
+              outputs={s.result.files}
               onReset={s.reset}
             />
           ) : !s.file ? (

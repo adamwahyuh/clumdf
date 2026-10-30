@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { ActiveToolContext } from "@/app/active-tool";
 import { tools } from "@/app/tools";
 import { useHotkey } from "@/hooks/use-hotkey";
 import { AppShell } from "@/components/layout/AppShell";
@@ -12,13 +13,16 @@ export default function App() {
     const tool = tools[Number(key) - 1];
     if (tool) setActiveId(tool.id);
   });
-  const ActiveView = tools.find((tool) => tool.id === activeId)!.view;
+  const active = tools.find((tool) => tool.id === activeId)!;
+  const ActiveView = active.view;
 
   return (
     <TooltipProvider>
       <AppShell activeId={activeId} onSelect={setActiveId}>
         {/* key: reset state layar saat pindah fitur */}
-        <ActiveView key={activeId} />
+        <ActiveToolContext.Provider value={active.i18nKey}>
+          <ActiveView key={activeId} />
+        </ActiveToolContext.Provider>
       </AppShell>
       <Toaster />
     </TooltipProvider>

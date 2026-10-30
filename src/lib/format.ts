@@ -21,3 +21,18 @@ export function fileName(path: string): string {
 export function withSuffix(path: string, suffix: string): string {
   return path.replace(/(\.[^.\\/]+)?$/, (ext) => `${suffix}${ext}`);
 }
+
+/** "5 menit yang lalu" / "kemarin", mengikuti bahasa */
+export function formatRelativeTime(at: number, locale: string): string {
+  const seconds = Math.round((at - Date.now()) / 1000);
+  const units: [Intl.RelativeTimeFormatUnit, number][] = [
+    ["day", 86400],
+    ["hour", 3600],
+    ["minute", 60],
+  ];
+  const rtf = new Intl.RelativeTimeFormat(locale, { numeric: "auto" });
+  for (const [unit, size] of units) {
+    if (Math.abs(seconds) >= size) return rtf.format(Math.round(seconds / size), unit);
+  }
+  return rtf.format(0, "second");
+}

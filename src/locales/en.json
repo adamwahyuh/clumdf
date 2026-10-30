@@ -4,7 +4,8 @@
     "optimize": "Optimize",
     "convert": "Convert",
     "security": "Security",
-    "edit": "Edit"
+    "edit": "Edit",
+    "other": "More"
   },
   "tools": {
     "merge": {
@@ -263,6 +264,10 @@
       "done": "Header & footer added",
       "doneDetails_one": "{{count}} file saved with the -header suffix",
       "doneDetails_other": "{{count}} files saved with the -header suffix"
+    },
+    "history": {
+      "title": "History",
+      "description": "Files you've recently processed in Berkas."
     }
   },
   "dropZone": {
@@ -350,5 +355,16 @@
       "medium": "Medium",
       "large": "Large"
     }
+  },
+  "history": {
+    "empty": "No history yet",
+    "emptyHint": "Files you merge, compress, and more will show up here.",
+    "summary_one": "{{count}} entry",
+    "summary_other": "{{count}} entries",
+    "clear": "Clear history",
+    "remove": "Remove from history",
+    "more_one": "+{{count}} more file",
+    "more_other": "+{{count}} more files",
+    "missing": "{{name}} is no longer where it was"
   }
 }

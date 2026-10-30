@@ -2,6 +2,7 @@ import type { ComponentType } from "react";
 import {
   FileStack,
   FileX2,
+  History,
   Images,
   LayoutGrid,
   ListOrdered,
@@ -16,6 +17,7 @@ import {
 import { MergeView } from "@/features/merge/MergeView";
 import { CompressView } from "@/features/compress/CompressView";
 import { HeaderFooterView } from "@/features/header-footer/HeaderFooterView";
+import { HistoryView } from "@/features/history/HistoryView";
 import { ImageToPdfView } from "@/features/image-to-pdf/ImageToPdfView";
 import { MetadataView } from "@/features/metadata/MetadataView";
 import { OrganizeView } from "@/features/organize/OrganizeView";
@@ -25,7 +27,7 @@ import { UnlockView } from "@/features/password/UnlockView";
 import { SignatureView } from "@/features/signature/SignatureView";
 import { SplitView } from "@/features/split/SplitView";
 
-export type ToolGroup = "organize" | "edit" | "optimize" | "convert" | "security";
+export type ToolGroup = "organize" | "edit" | "optimize" | "convert" | "security" | "other";
 
 export interface Tool {
   id: string;
@@ -49,6 +51,7 @@ export const tools: Tool[] = [
   { id: "protect", group: "security", icon: Lock, i18nKey: "tools.protect", view: ProtectView },
   { id: "unlock", group: "security", icon: LockOpen, i18nKey: "tools.unlock", view: UnlockView },
   { id: "metadata", group: "security", icon: FileX2, i18nKey: "tools.metadata", view: MetadataView },
+  { id: "history", group: "other", icon: History, i18nKey: "tools.history", view: HistoryView },
 ];
 
-export const toolGroups: ToolGroup[] = ["organize", "edit", "optimize", "convert", "security"];
+export const toolGroups: ToolGroup[] = ["organize", "edit", "optimize", "convert", "security", "other"];

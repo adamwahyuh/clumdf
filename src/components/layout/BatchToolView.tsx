@@ -61,6 +61,7 @@ export function BatchToolView<R>({ i18nKey, icon, queue, batch, settings, render
                 title={t(`${i18nKey}.done`)}
                 details={t(`${i18nKey}.doneDetails`, { count: results.length })}
                 outputPath={results[0].output}
+                outputs={results.map((r) => r.output)}
                 onReset={reset}
               />
             ))

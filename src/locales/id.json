@@ -4,7 +4,8 @@
     "optimize": "Optimasi",
     "convert": "Konversi",
     "security": "Keamanan",
-    "edit": "Sunting"
+    "edit": "Sunting",
+    "other": "Lainnya"
   },
   "tools": {
     "merge": {
@@ -250,6 +251,10 @@
       "running": "Menambahkan teks ke file {{current}} dari {{total}}…",
       "done": "Header & footer berhasil ditambahkan",
       "doneDetails": "{{count}} file disimpan dengan akhiran -header"
+    },
+    "history": {
+      "title": "Riwayat",
+      "description": "File yang baru saja kamu proses di Berkas."
     }
   },
   "dropZone": {
@@ -334,5 +339,14 @@
       "medium": "Sedang",
       "large": "Besar"
     }
+  },
+  "history": {
+    "empty": "Belum ada riwayat",
+    "emptyHint": "File hasil gabung, kecilkan, dan lainnya akan muncul di sini.",
+    "summary": "{{count}} entri",
+    "clear": "Hapus riwayat",
+    "remove": "Hapus dari riwayat",
+    "more": "+{{count}} file lain",
+    "missing": "{{name}} sudah tidak ada di tempatnya"
   }
 }

@@ -20,6 +20,7 @@ export function CompressResult({ results, onReset }: CompressResultProps) {
     <ResultCard
       title={t(allOptimal ? "tools.compress.allOptimal" : "tools.compress.done")}
       outputPath={results[0].output}
+      outputs={results.map((r) => r.output)}
       onReset={onReset}
       details={
         <ul className="mt-2 flex flex-col gap-2 text-left">
