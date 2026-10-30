@@ -1,8 +1,8 @@
-# Berkas — Aplikasi Desktop PDF
+# Clumdf — Aplikasi Desktop PDF
 
 > Dokumen ini adalah **spesifikasi proyek & panduan kerja** untuk Claude Code.
 > Taruh di root proyek dengan nama `CLAUDE.md` supaya otomatis dibaca setiap sesi.
-> Nama "Berkas" hanya placeholder dan boleh diganti.
+> Nama aplikasi: **Clumdf** (sebelumnya placeholder "Berkas"). Logo: `assets/logo/`.
 
 ---
 

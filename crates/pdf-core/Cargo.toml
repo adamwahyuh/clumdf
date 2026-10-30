@@ -2,7 +2,7 @@
 name = "pdf-core"
 version = "0.1.0"
 edition = "2024"
-description = "Logika PDF Berkas, tanpa ketergantungan ke Tauri"
+description = "Logika PDF Clumdf, tanpa ketergantungan ke Tauri"
 
 [dependencies]
 getrandom = "0.3"

@@ -1,0 +1,42 @@
+<!--
+  Logo Clumdf: keluarga visual Clumsee (kotak membulat bergradasi biru → indigo,
+  sudut bidik putih) dengan dokumen PDF di tengah.
+  Ikon aplikasi dibuat ulang dengan: lihat assets/logo/README.md
+-->
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#38B6F7" />
+      <stop offset="1" stop-color="#4F4AE6" />
+    </linearGradient>
+    <linearGradient id="label" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#F45B5B" />
+      <stop offset="1" stop-color="#DC3535" />
+    </linearGradient>
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="10" stdDeviation="14" flood-color="#1E2A78" flood-opacity="0.28" />
+    </filter>
+  </defs>
+
+  <!-- Bentuk dasar sesuai grid ikon macOS: 824 px di kanvas 1024 -->
+  <rect x="100" y="100" width="824" height="824" rx="185" fill="url(#bg)" />
+
+  <!-- Sudut bidik, sama seperti Clumsee -->
+  <g fill="none" stroke="#FFFFFF" stroke-width="52" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M262 398 V312 Q262 262 312 262 H398" />
+    <path d="M626 262 H712 Q762 262 762 312 V398" />
+    <path d="M262 626 V712 Q262 762 312 762 H398" />
+    <path d="M626 762 H712 Q762 762 762 712 V626" />
+  </g>
+
+  <!-- Dokumen PDF -->
+  <g filter="url(#shadow)">
+    <path d="M394 318 H580 L668 406 V678 Q668 706 640 706 H394 Q366 706 366 678 V346 Q366 318 394 318 Z" fill="#FFFFFF" />
+    <path d="M580 318 V382 Q580 406 604 406 H668 Z" fill="#D3DEFA" />
+    <rect x="410" y="372" width="130" height="18" rx="9" fill="#CBD7F6" />
+    <rect x="410" y="420" width="214" height="18" rx="9" fill="#CBD7F6" />
+    <rect x="410" y="660" width="170" height="18" rx="9" fill="#CBD7F6" />
+    <rect x="326" y="482" width="300" height="140" rx="26" fill="url(#label)" />
+    <text x="476" y="589" text-anchor="middle" fill="#FFFFFF" font-family="-apple-system, 'SF Pro Display', 'Helvetica Neue', Arial, sans-serif" font-size="104" font-weight="800" letter-spacing="3">PDF</text>
+  </g>
+</svg>

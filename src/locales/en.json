@@ -273,7 +273,7 @@
     },
     "history": {
       "title": "History",
-      "description": "Files you've recently processed in Berkas."
+      "description": "Files you've recently processed in Clumdf."
     },
     "pdfToImages": {
       "title": "PDF to Images",
@@ -304,7 +304,7 @@
       "formats": "PDF",
       "ready": "Ready to recognize text",
       "missing": "OCR program not installed",
-      "missingHint": "Berkas uses Tesseract (free) to recognize text. Install it once, then click Check again.",
+      "missingHint": "Clumdf uses Tesseract (free) to recognize text. Install it once, then click Check again.",
       "installWindows": "Download Tesseract for Windows",
       "recheck": "Check again",
       "about": "Pages look exactly the same. Pages that already contain text are skipped. Languages: Indonesian & English.",
@@ -405,7 +405,7 @@
         "subject": "e.g. Job application attachment",
         "keywords": "separate with commas",
         "creator": "e.g. Microsoft Word",
-        "producer": "e.g. Berkas"
+        "producer": "e.g. Clumdf"
       },
       "hint": "Empty fields are removed from the PDF. This info shows in Properties/Get Info and helps file search.",
       "changed": "Unsaved changes",
@@ -460,7 +460,7 @@
     "wrong_password": "Wrong password for {{name}}",
     "not_encrypted": "{{name}} isn't password protected",
     "empty_password": "Enter a password first",
-    "renderer_missing": "The PDFium component is missing. Try reinstalling Berkas.",
+    "renderer_missing": "The PDFium component is missing. Try reinstalling Clumdf.",
     "ocr_missing": "The OCR program (Tesseract) isn't installed",
     "ocr_failed": "Couldn't recognize text in {{name}}"
   },
@@ -519,6 +519,6 @@
     "title": "What would you like to do?",
     "count_one": "{{count}} file",
     "count_other": "{{count}} files",
-    "unsupported": "Berkas can't process this kind of file yet."
+    "unsupported": "Clumdf can't process this kind of file yet."
   }
 }

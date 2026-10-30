@@ -1,8 +1,8 @@
 {
   "$schema": "https://schema.tauri.app/config/2",
-  "productName": "Berkas",
+  "productName": "Clumdf",
   "version": "0.1.0",
-  "identifier": "com.berkas.desktop",
+  "identifier": "com.clumdf.desktop",
   "build": {
     "beforeDevCommand": "npm run dev",
     "devUrl": "http://localhost:1420",
@@ -13,7 +13,7 @@
     "windows": [
       {
         "label": "main",
-        "title": "Berkas",
+        "title": "Clumdf",
         "width": 1100,
         "height": 720,
         "minWidth": 860,
