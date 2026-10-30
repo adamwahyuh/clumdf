@@ -56,11 +56,15 @@ export interface ImageToPdfOptions {
   orientation: PageOrientation;
   margin: Margin;
   quality: ImageQuality;
+  /** Workflow berantai: langsung kecilkan PDF hasil */
+  compress?: CompressOptions | null;
 }
 
 export interface ImageToPdfReport {
   pageCount: number;
   outputSize: number;
+  /** null jika tidak dikecilkan dengan target */
+  targetMet: boolean | null;
 }
 
 export function imagesToPdf(args: {

@@ -7,7 +7,7 @@ use image::{ExtendedColorType, ImageEncoder, Rgb, RgbImage, Rgba, RgbaImage};
 use lopdf::{Document, Object};
 use pdf_core::image_to_pdf::layout::{PT_PER_MM, Placement, place};
 use pdf_core::image_to_pdf::{ImageQuality, ImageToPdfOptions, Margin, PageOrientation, PageSize};
-use pdf_core::images_to_pdf;
+use pdf_core::{CompressOptions, images_to_pdf};
 
 use common::{images_in, temp_dir};
 
@@ -79,7 +79,7 @@ fn f4_folio_is_215_by_330_mm() {
 // ---------- images_to_pdf ----------
 
 fn options(page_size: PageSize, quality: ImageQuality) -> ImageToPdfOptions {
-    ImageToPdfOptions { page_size, orientation: PageOrientation::Auto, margin: Margin::None, quality }
+    ImageToPdfOptions { page_size, orientation: PageOrientation::Auto, margin: Margin::None, quality, compress: None }
 }
 
 fn save_jpeg(path: &Path, img: &RgbImage, exif: Option<Vec<u8>>) {
@@ -208,4 +208,30 @@ fn broken_image_reports_invalid_image() {
 
     assert_eq!(err.code(), "invalid_image");
     assert_eq!(err.path(), Some(broken.as_path()));
+}
+
+#[test]
+fn chained_compress_brings_result_under_target() {
+    let dir = temp_dir("img2pdf-chain");
+    let photo = dir.join("foto.png");
+    let pixels = common::photo_samples(2400, 1800);
+    RgbImage::from_raw(2400, 1800, pixels).unwrap().save(&photo).unwrap();
+    let plain = dir.join("plain.pdf");
+    let chained = dir.join("chained.pdf");
+    let target = 150_000;
+    let compress = CompressOptions { max_dimension: 1600, jpeg_quality: 65, grayscale: false, target_size: Some(target) };
+
+    images_to_pdf(&[photo.clone()], &plain, &options(PageSize::A4, ImageQuality::Original), &no_progress).unwrap();
+    let report = images_to_pdf(
+        &[photo],
+        &chained,
+        &ImageToPdfOptions { compress: Some(compress), ..options(PageSize::A4, ImageQuality::Original) },
+        &no_progress,
+    )
+    .unwrap();
+
+    assert_eq!(report.target_met, Some(true));
+    assert!(report.output_size <= target, "{report:?}");
+    assert!(report.output_size < std::fs::metadata(&plain).unwrap().len());
+    assert_eq!(report.output_size, std::fs::metadata(&chained).unwrap().len());
 }

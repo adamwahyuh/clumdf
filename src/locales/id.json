@@ -156,7 +156,10 @@
         "lamaran": "Berkas Lamaran",
         "folio": "Dokumen F4 / Folio",
         "foto": "Foto apa adanya"
-      }
+      },
+      "compressAfter": "Kecilkan hasilnya",
+      "compressNone": "Tidak dikecilkan",
+      "compressAfterHint": "PDF langsung dikecilkan sampai muat di bawah ukuran ini."
     },
     "metadata": {
       "title": "Hapus Metadata",

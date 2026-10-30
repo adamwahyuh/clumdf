@@ -12,6 +12,7 @@ use lopdf::{Dictionary, Document, Object, Stream};
 use rayon::prelude::*;
 use serde::Serialize;
 
+use crate::compress;
 use crate::document;
 use crate::error::PdfError;
 use crate::progress::ProgressReporter;
@@ -21,6 +22,8 @@ use crate::progress::ProgressReporter;
 pub struct ImageToPdfReport {
     pub page_count: usize,
     pub output_size: u64,
+    /// Hanya bila dikecilkan dengan target ukuran: apakah hasil ≤ target
+    pub target_met: Option<bool>,
 }
 
 /// Satu gambar = satu halaman, sesuai urutan `inputs`.
@@ -97,6 +100,12 @@ pub fn images_to_pdf(
 
     document::save(&mut doc, output)?;
     reporter.report(total, total);
+
+    // compress_pdf membaca seluruh file dulu, jadi aman menimpa file yang sama
+    let target_met = match &options.compress {
+        Some(compress) => compress::compress_pdf(output, output, compress, reporter)?.target_met,
+        None => None,
+    };
     let output_size = std::fs::metadata(output).map_err(|e| PdfError::io(output, e))?.len();
-    Ok(ImageToPdfReport { page_count, output_size })
+    Ok(ImageToPdfReport { page_count, output_size, target_met })
 }

@@ -8,7 +8,8 @@ import { SegmentedControl } from "@/components/common/SegmentedControl";
 import { SettingRow } from "@/components/common/SettingRow";
 import { SettingsPanel } from "@/components/common/SettingsPanel";
 import { useSettings } from "@/stores/settings-store";
-import { compressBuiltInPresets, compressPresetOrder, compressTargetOrder, type CompressTarget } from "./presets";
+import { compressTargetOrder, type CompressTarget } from "@/lib/compress-targets";
+import { compressBuiltInPresets, compressPresetOrder } from "./presets";
 
 export function CompressSettings() {
   const { t } = useTranslation();

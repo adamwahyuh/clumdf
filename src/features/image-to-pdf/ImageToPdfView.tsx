@@ -38,10 +38,17 @@ export function ImageToPdfView() {
           {result ? (
             <ResultCard
               title={t("tools.imageToPdf.done")}
-              details={t("tools.imageToPdf.doneDetails", {
-                count: result.report.pageCount,
-                size: formatBytes(result.report.outputSize, i18n.language),
-              })}
+              details={
+                <>
+                  {t("tools.imageToPdf.doneDetails", {
+                    count: result.report.pageCount,
+                    size: formatBytes(result.report.outputSize, i18n.language),
+                  })}
+                  {result.report.targetMet === false && (
+                    <span className="mt-1 block text-destructive">{t("tools.compress.targetMissed")}</span>
+                  )}
+                </>
+              }
               outputPath={result.output}
               onReset={reset}
             />

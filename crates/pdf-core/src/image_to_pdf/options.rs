@@ -1,5 +1,7 @@
 use serde::Deserialize;
 
+use crate::compress::CompressOptions;
+
 #[derive(Debug, Clone, Copy, PartialEq, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub enum PageSize {
@@ -47,6 +49,9 @@ pub struct ImageToPdfOptions {
     pub orientation: PageOrientation,
     pub margin: Margin,
     pub quality: ImageQuality,
+    /// Workflow berantai: langsung kecilkan PDF hasil (mis. dengan target ukuran)
+    #[serde(default)]
+    pub compress: Option<CompressOptions>,
 }
 
 impl PageSize {

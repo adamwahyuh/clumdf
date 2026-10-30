@@ -6,9 +6,10 @@ import { PresetPicker } from "@/components/common/PresetPicker";
 import { SegmentedControl } from "@/components/common/SegmentedControl";
 import { SettingRow } from "@/components/common/SettingRow";
 import { SettingsPanel } from "@/components/common/SettingsPanel";
+import type { CompressTarget } from "@/lib/compress-targets";
 import type { PageSize } from "@/lib/tauri/commands";
 import { useSettings } from "@/stores/settings-store";
-import { imageToPdfBuiltInPresets, margins, orientations, pageSizes, qualities } from "./options";
+import { compressAfterOptions, imageToPdfBuiltInPresets, margins, orientations, pageSizes, qualities } from "./options";
 
 export function ImageToPdfSettings() {
   const { t } = useTranslation();
@@ -58,6 +59,20 @@ export function ImageToPdfSettings() {
           options={options("orientation", orientations)}
           disabled={o.pageSize === "fit"}
         />
+      </SettingRow>
+      <SettingRow label={t("tools.imageToPdf.compressAfter")} htmlFor="img-compress" hint={t("tools.imageToPdf.compressAfterHint")}>
+        <Select value={o.compressAfter} onValueChange={(v) => setImageToPdf({ compressAfter: v as CompressTarget })}>
+          <SelectTrigger id="img-compress" className="w-full">
+            <SelectValue />
+          </SelectTrigger>
+          <SelectContent>
+            {compressAfterOptions.map((target) => (
+              <SelectItem key={target} value={target}>
+                {target === "none" ? t("tools.imageToPdf.compressNone") : t(`tools.compress.targets.${target}`)}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
       </SettingRow>
 
       {/* Pengaturan lanjutan disembunyikan supaya layar tetap tenang */}

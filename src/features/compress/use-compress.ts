@@ -3,7 +3,8 @@ import { withSuffix } from "@/lib/format";
 import { compressPdf, type CompressReport } from "@/lib/tauri/commands";
 import { createFileQueue, inspectPdfFile } from "@/stores/create-file-queue";
 import { useSettings } from "@/stores/settings-store";
-import { compressPresets, resolveTarget } from "./presets";
+import { resolveTarget } from "@/lib/compress-targets";
+import { compressPresets } from "./presets";
 
 export const useCompressQueue = createFileQueue(inspectPdfFile);
 

@@ -1,6 +1,7 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
-import type { CompressPreset, CompressTarget } from "@/features/compress/presets";
+import type { CompressPreset } from "@/features/compress/presets";
+import type { CompressTarget } from "@/lib/compress-targets";
 import type { ImageToPdfOptions, SignatureInfo, StampPosition } from "@/lib/tauri/commands";
 
 export interface CompressSettings {
@@ -41,6 +42,9 @@ export interface HeaderFooterSettings {
   fontSize: FontSizeName;
 }
 
+/** Pengaturan Gambar ke PDF + target workflow berantai ("none" = tidak dikecilkan) */
+export type ImageToPdfSettings = Omit<ImageToPdfOptions, "compress"> & { compressAfter: CompressTarget };
+
 export interface UserPreset<T> {
   id: string;
   name: string;
@@ -49,13 +53,13 @@ export interface UserPreset<T> {
 
 interface UserPresets {
   compress: UserPreset<CompressSettings>[];
-  imageToPdf: UserPreset<ImageToPdfOptions>[];
+  imageToPdf: UserPreset<ImageToPdfSettings>[];
 }
 
 interface SettingsState {
   language: Language;
   compress: CompressSettings;
-  imageToPdf: ImageToPdfOptions;
+  imageToPdf: ImageToPdfSettings;
   split: SplitSettings;
   userPresets: UserPresets;
   pageNumbers: PageNumberSettings;
@@ -64,7 +68,7 @@ interface SettingsState {
   signature: (SignatureInfo & { version: number }) | null;
   setLanguage: (language: Language) => void;
   setCompress: (patch: Partial<CompressSettings>) => void;
-  setImageToPdf: (patch: Partial<ImageToPdfOptions>) => void;
+  setImageToPdf: (patch: Partial<ImageToPdfSettings>) => void;
   setSplit: (patch: Partial<SplitSettings>) => void;
   addUserPreset: <K extends keyof UserPresets>(tool: K, name: string, values: UserPresets[K][number]["values"]) => void;
   removeUserPreset: (tool: keyof UserPresets, id: string) => void;
@@ -79,7 +83,7 @@ export const useSettings = create<SettingsState>()(
     (set) => ({
       language: "id",
       compress: { preset: "balanced", grayscale: false, target: "none", customMb: 1 },
-      imageToPdf: { pageSize: "a4", orientation: "auto", margin: "none", quality: "medium" },
+      imageToPdf: { pageSize: "a4", orientation: "auto", margin: "none", quality: "medium", compressAfter: "none" },
       split: { mode: "eachPage", n: 2 },
       userPresets: { compress: [], imageToPdf: [] },
       pageNumbers: { format: "pageOfTotal", position: "bottomCenter", fontSize: "medium", firstNumber: 1, skipFirst: false },

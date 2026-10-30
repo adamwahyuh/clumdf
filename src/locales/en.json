@@ -162,7 +162,10 @@
         "lamaran": "Job Application",
         "folio": "F4 / Folio Document",
         "foto": "Photos as they are"
-      }
+      },
+      "compressAfter": "Compress the result",
+      "compressNone": "Don't compress",
+      "compressAfterHint": "The PDF is compressed right away to fit under this size."
     },
     "metadata": {
       "title": "Remove Metadata",
