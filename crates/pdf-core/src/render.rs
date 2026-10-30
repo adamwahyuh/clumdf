@@ -42,7 +42,7 @@ pub struct RenderReport {
 // Binding PDFium global dan hanya boleh dibuat sekali per proses.
 static PDFIUM: OnceLock<Pdfium> = OnceLock::new();
 
-fn pdfium(library_dir: &Path) -> Result<&'static Pdfium, PdfError> {
+pub(crate) fn pdfium(library_dir: &Path) -> Result<&'static Pdfium, PdfError> {
     if let Some(pdfium) = PDFIUM.get() {
         return Ok(pdfium);
     }

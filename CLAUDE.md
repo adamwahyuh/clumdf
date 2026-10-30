@@ -465,7 +465,9 @@ xcode-select --install
 
 # Development
 npm install
-./scripts/fetch-pdfium.sh   # sekali: unduh library PDFium (PDF → gambar)
+./scripts/fetch-pdfium.sh    # sekali: unduh library PDFium (PDF → gambar, OCR)
+./scripts/fetch-tessdata.sh  # sekali: unduh data bahasa OCR (ind + eng)
+brew install tesseract       # opsional, untuk mencoba OCR (Windows/Linux: lihat layar OCR)
 npm run tauri dev
 
 # Tes logika PDF (PDFIUM_DIR supaya tes render ikut jalan)

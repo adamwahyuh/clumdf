@@ -282,6 +282,21 @@
       "running": "Mengubah file {{current}} dari {{total}}…",
       "done": "PDF berhasil diubah jadi gambar",
       "doneDetails": "Gambar dari {{count}} PDF disimpan di samping file aslinya"
+    },
+    "ocr": {
+      "title": "OCR (Teks dari Scan)",
+      "description": "Jadikan teks di PDF hasil scan bisa dicari dan di-copy.",
+      "action": "Kenali teks",
+      "formats": "PDF",
+      "ready": "Siap mengenali teks",
+      "missing": "Program OCR belum terpasang",
+      "missingHint": "Berkas memakai Tesseract (gratis) untuk mengenali teks. Pasang sekali, lalu klik Periksa lagi.",
+      "installWindows": "Unduh Tesseract untuk Windows",
+      "recheck": "Periksa lagi",
+      "about": "Tampilan halaman tidak berubah. Halaman yang sudah berisi teks dilewati. Bahasa: Indonesia & Inggris.",
+      "running": "Mengenali teks file {{current}} dari {{total}}…",
+      "done": "Teks berhasil dikenali",
+      "doneDetails": "{{count}} file disimpan dengan akhiran -ocr"
     }
   },
   "dropZone": {
@@ -326,7 +341,9 @@
     "wrong_password": "Password untuk {{name}} salah",
     "not_encrypted": "{{name}} tidak dikunci password",
     "empty_password": "Password belum diisi",
-    "renderer_missing": "Komponen PDFium tidak ditemukan. Coba pasang ulang Berkas."
+    "renderer_missing": "Komponen PDFium tidak ditemukan. Coba pasang ulang Berkas.",
+    "ocr_missing": "Program OCR (Tesseract) belum terpasang",
+    "ocr_failed": "Teks di {{name}} gagal dikenali"
   },
   "language": {
     "label": "Bahasa",

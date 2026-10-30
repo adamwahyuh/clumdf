@@ -211,3 +211,20 @@ export function pdfToImages(args: {
 export function takeOpenedFiles(): Promise<string[]> {
   return invoke("take_opened_files");
 }
+
+export interface OcrReport {
+  pagesRecognized: number;
+  /** Halaman yang dilewati karena sudah punya teks */
+  pagesSkipped: number;
+  words: number;
+  outputSize: number;
+}
+
+/** Lokasi tesseract di sistem, atau null bila belum terpasang. */
+export function ocrStatus(): Promise<string | null> {
+  return invoke("ocr_status");
+}
+
+export function ocrPdf(args: { input: string; output: string; jobId: string }): Promise<OcrReport> {
+  return invoke("ocr_pdf", args);
+}

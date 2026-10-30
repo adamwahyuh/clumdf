@@ -29,6 +29,8 @@ pub fn run() {
             commands::inspect::inspect_pdf,
             commands::merge::merge_pdfs,
             commands::metadata::strip_metadata,
+            commands::ocr::ocr_pdf,
+            commands::ocr::ocr_status,
             commands::organize::edit_pages,
             commands::password::protect_pdf,
             commands::password::unlock_pdf,

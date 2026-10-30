@@ -4,6 +4,7 @@ pub mod image_to_pdf;
 pub mod inspect;
 pub mod merge;
 pub mod metadata;
+pub mod ocr;
 pub mod organize;
 pub mod password;
 pub mod render;

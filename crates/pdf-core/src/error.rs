@@ -34,6 +34,12 @@ pub enum PdfError {
     #[error("library PDFium tidak ditemukan ({reason})")]
     RendererMissing { reason: String },
 
+    #[error("program OCR (tesseract) tidak ditemukan ({reason})")]
+    OcrMissing { reason: String },
+
+    #[error("OCR gagal: {reason}")]
+    OcrFailed { reason: String },
+
     #[error("tidak ada file untuk diproses")]
     NoInput,
 }
@@ -50,6 +56,8 @@ impl PdfError {
             PdfError::InvalidRange { .. } => "invalid_range",
             PdfError::Io { .. } => "io",
             PdfError::RendererMissing { .. } => "renderer_missing",
+            PdfError::OcrMissing { .. } => "ocr_missing",
+            PdfError::OcrFailed { .. } => "ocr_failed",
             PdfError::NoInput => "no_input",
         }
     }
@@ -65,6 +73,8 @@ impl PdfError {
             PdfError::EmptyPassword
             | PdfError::InvalidRange { .. }
             | PdfError::RendererMissing { .. }
+            | PdfError::OcrMissing { .. }
+            | PdfError::OcrFailed { .. }
             | PdfError::NoInput => None,
         }
     }

@@ -296,6 +296,22 @@
       "done": "PDFs converted to images",
       "doneDetails_one": "Images from {{count}} PDF saved next to the original",
       "doneDetails_other": "Images from {{count}} PDFs saved next to the originals"
+    },
+    "ocr": {
+      "title": "OCR (Text from Scans)",
+      "description": "Make text in scanned PDFs searchable and copyable.",
+      "action": "Recognize text",
+      "formats": "PDF",
+      "ready": "Ready to recognize text",
+      "missing": "OCR program not installed",
+      "missingHint": "Berkas uses Tesseract (free) to recognize text. Install it once, then click Check again.",
+      "installWindows": "Download Tesseract for Windows",
+      "recheck": "Check again",
+      "about": "Pages look exactly the same. Pages that already contain text are skipped. Languages: Indonesian & English.",
+      "running": "Recognizing text in file {{current}} of {{total}}…",
+      "done": "Text recognized",
+      "doneDetails_one": "{{count}} file saved with the -ocr suffix",
+      "doneDetails_other": "{{count}} files saved with the -ocr suffix"
     }
   },
   "dropZone": {
@@ -343,7 +359,9 @@
     "wrong_password": "Wrong password for {{name}}",
     "not_encrypted": "{{name}} isn't password protected",
     "empty_password": "Enter a password first",
-    "renderer_missing": "The PDFium component is missing. Try reinstalling Berkas."
+    "renderer_missing": "The PDFium component is missing. Try reinstalling Berkas.",
+    "ocr_missing": "The OCR program (Tesseract) isn't installed",
+    "ocr_failed": "Couldn't recognize text in {{name}}"
   },
   "language": {
     "label": "Language",
